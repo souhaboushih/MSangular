@@ -1,0 +1,26 @@
+<!-- Tableau pour afficher la liste des utilisateurs -->
+<main class="main-content">
+  <div class="container">
+    <h1>Liste des utilisateurs</h1>
+
+    <!-- Tableau pour afficher la liste des utilisateurs -->
+    <table *ngIf="users && users.length > 0" class="table">
+      <thead>
+      <tr>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+
+        <td>
+          <button class="btn btn-success" (click)="acceptUser(user._id)">Accepter</button>
+          <button class="btn btn-danger" (click)="rejectUser(user._id)">Refuser</button>
+        </td>
+      </tr>
+      </tbody>
+      <
