@@ -4,11 +4,19 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
+interface Users {
+  // Définissez les propriétés du type Users
+
+  username: string;
+  email : string;
+  password : string;
+  // ... autres propriétés
+}
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  private apiUrl = 'http://localhost:3002'; // URL de votre backend
+  private apiUrl = 'http://localhost:8888/APP'; // URL de votre passerelle Spring Boot
 
   constructor(private http: HttpClient) {}
 
@@ -24,11 +32,16 @@ export class UserService {
     );
   }
 
-  getUsers(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/user`).pipe(
-      catchError(this.handleError)
-    );
+  getUsers(): Observable<Users[]> {
+    return this.http.get<Users[]>(`${this.apiUrl}/users`)
+      .pipe(
+        catchError(error => {
+          console.error('Error fetching users:', error);
+          return throwError('Une erreur est survenue. Veuillez réessayer plus tard.');
+        })
+      );
   }
+
   rejectUser(userId: string): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/api/users/reject/${userId}`).pipe(
       catchError(this.handleError)
