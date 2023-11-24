@@ -23,11 +23,11 @@ export class SignUpComponent {
     this.userService.signUp(this.signUpData.username, this.signUpData.password, this.signUpData.email).subscribe(
       (data) => {
         console.log('Réponse du service:', data);
-        // Traitez la réponse du service, par exemple, redirigez l'utilisateur vers la page de connexion
+
       },
       (error) => {
         console.error('Erreur lors de l\'inscription:', error);
-        // Gérez les erreurs de manière appropriée ici
+
       }
     );
   }

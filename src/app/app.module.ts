@@ -11,10 +11,12 @@ import { UsersComponent } from './users/users.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SideComponent } from './side/side.component';
+
 
 
 @NgModule({
-  declarations: [AppComponent, UsersComponent, SignInComponent, SignUpComponent],
+  declarations: [AppComponent, UsersComponent, SignInComponent, SignUpComponent, SideComponent],
   imports: [BrowserModule, HttpClientModule, FormsModule, AppRoutingModule, BrowserAnimationsModule],
   providers: [UserService],
   bootstrap: [AppComponent],
