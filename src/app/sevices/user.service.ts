@@ -24,10 +24,16 @@ export class UserService {
     );
   }
 
-  signUp(username: string, password: string, email: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/users`, { username, password, email }).pipe(
+  signUp(username: string, password: string, email: string, numInscrit: number, userClasse: string): Observable<any> {
+    const url = `${this.apiUrl}/users`; // Assuming you have a 'users' endpoint for signup
+    const signUpData = { username, password, email, numInscrit, userClasse }; // Include numInscrit and userClasse
+    return this.http.post(url, signUpData).pipe(
       catchError(this.handleError)
     );
+  }
+  logout(): Observable<any> {
+    // Call the server's /logout endpoint
+    return this.http.post(`${this.apiUrl}/logout`, {});
   }
 
   getUsers(): Observable<Users[]> {
