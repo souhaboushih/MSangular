@@ -21,7 +21,7 @@
           <td>{{ user.username }}</td>
           <td>{{ user.email }}</td>
           <td>
-            <button class="btn btn-success" (click)="acceptUser(user._id)">Accepte</button>
+            <button class="btn btn-success" (click)="acceptUser(user._id)" [disabled]="user.etat === 1">Accepte</button>
             <button class="btn btn-danger" (click)="rejectUser(user._id)">Refuse</button>
           </td>
         </tr>
