@@ -1,0 +1,88 @@
+<app-side></app-side>
+
+
+       
+
+        <div class="row">
+            <div class="col-md-offset-4 col-md-7">
+               
+                <form (ngSubmit)="addel()" [formGroup]="addeleveform" *ngIf="btnadd">
+                  <h1>nouveau compte eleve</h1>
+                  <div class="form-group">
+                      <label class="control-label">username</label>
+                      <input formControlName="username" type="text" class="form-control" />
+
+                      <label class=" control-label">Password</label>
+                      <input formControlName="password" type="password" class="form-control" />
+
+                      <label class="control-label">Email</label>
+                      <input formControlName="email" type="text" class="form-control" placeholder="Example@EmailAddress.com"/>
+
+                      <label class="control-label">Classe</label>
+                      <input formControlName="userClass" type="text" class="form-control" />
+         
+
+                      <button type="submit" class="btn btn-default">Ajout <i class="fa fa-arrow-circle-right fa-2x"></i></button>
+                  </div>
+                   
+                </form>
+                            
+                <form (ngSubmit)="update()" [formGroup]="updateel" *ngIf="updatebtn">
+                  <h1>modifier compte eleve</h1>
+                  <div class="form-group">
+                    <input formControlName="id" type="hidden" class="form-control" />
+                      <label class="control-label">username</label>
+                      <input formControlName="username" type="text" class="form-control" />
+
+                      <label class=" control-label">Password</label>
+                      <input formControlName="password" type="password" class="form-control" />
+
+                      <label class="control-label">Email</label>
+                      <input formControlName="email" type="text" class="form-control" placeholder="Example@EmailAddress.com"/>
+
+                      <label class="control-label">classe</label>
+                      <input formControlName="userClass" type="text" class="form-control" />
+         
+
+                      <button type="submit" class="btn btn-default">Modifier <i class="fa fa-arrow-circle-right fa-2x"></i></button>
+                  </div>
+                   
+                </form>
+                
+            </div>
+            
+            
+            
+        </div>
+        <div class="row text-center" style="margin-left: 20%;">
+
+            <div class="text-center col-md-10">
+              <button class="btn btn-dark" (click)="addform()">ajouter</button>
+              
+
+                <table *ngIf="eleve && eleve.length > 0" class="table table-striped table-bordered">
+                    <thead class="thead-dark">
+                    <tr>
+                      <th>Username</th>
+                      <th>Email</th>
+                      <th>classe</th>
+
+                      <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let el of eleve">
+                      <td>{{ el.username }}</td>
+                      <td>{{ el.email }}</td>
+                      <td>{{ el.userClass }}</td>
+
+                      <td>
+                        <button class="btn btn-danger" (click)="deleteel(el._id)">Supprimer</button>
+                        <button class="btn btn-info" (click)="updateform(el)">Modifier</button>
+
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+        </div>
+        </div>

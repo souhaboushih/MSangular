@@ -1,0 +1,78 @@
+<app-side></app-side>
+
+
+       
+
+        <div class="row">
+            <div class="col-md-offset-4 col-md-7">
+               
+                <form (ngSubmit)="addens()" [formGroup]="addensform" *ngIf="btnadd">
+                  <h1>nouveau compte enseignant</h1>
+                  <div class="form-group">
+                      <label class="control-label">username</label>
+                      <input formControlName="username" type="text" class="form-control" />
+
+                      <label class=" control-label">Password</label>
+                      <input formControlName="password" type="password" class="form-control" />
+
+                      <label class="control-label">Email</label>
+                      <input formControlName="email" type="text" class="form-control" placeholder="Example@EmailAddress.com"/>
+         
+
+                      <button type="submit" class="btn btn-default">Ajout <i class="fa fa-arrow-circle-right fa-2x"></i></button>
+                  </div>
+                   
+                </form>
+                            
+                <form (ngSubmit)="update()" [formGroup]="updatef" *ngIf="updatebtn">
+                  <h1>modifier compte enseignant</h1>
+                  <div class="form-group">
+                    <input formControlName="id" type="hidden" class="form-control" />
+                      <label class="control-label">username</label>
+                      <input formControlName="username" type="text" class="form-control" />
+
+                      <label class=" control-label">Password</label>
+                      <input formControlName="password" type="password" class="form-control" />
+
+                      <label class="control-label">Email</label>
+                      <input formControlName="email" type="text" class="form-control" placeholder="Example@EmailAddress.com"/>
+         
+
+                      <button type="submit" class="btn btn-default">Modifier <i class="fa fa-arrow-circle-right fa-2x"></i></button>
+                  </div>
+                   
+                </form>
+                
+            </div>
+            
+            
+            
+        </div>
+        <div class="row text-center" style="margin-left: 20%;">
+
+            <div class="text-center col-md-10">
+              <button class="btn btn-dark" (click)="addform()">ajouter</button>
+              
+
+                <table *ngIf="enseign && enseign.length > 0" class="table table-striped table-bordered">
+                    <thead class="thead-dark">
+                    <tr>
+                      <th>Username</th>
+                      <th>Email</th>
+                      <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let ensei of enseign">
+                      <td>{{ ensei.username }}</td>
+                      <td>{{ ensei.email }}</td>
+                      <td>
+                        <button class="btn btn-danger" (click)="deleteens(ensei._id)">Supprimer</button>
+                        <button class="btn btn-info" (click)="updateform(ensei)">Modifier</button>
+
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+        </div>
+        </div>
