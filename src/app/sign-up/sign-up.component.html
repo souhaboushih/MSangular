@@ -1,63 +1,70 @@
-<section class="vh-100 gradient-custom">
-  <div class="container py-5 h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-        <div class="card bg-dark text-white" style="border-radius: 1rem;">
-          <div class="card-body p-5 text-center">
+ <!----------------------- Conteneur Principal -------------------------->
 
-            <div class="mb-md-5 mt-md-4 pb-5">
-              <h2 class="fw-bold mb-2 text-uppercase">Sign Up</h2>
-              <p class="text-white-50 mb-5">Please enter your login and password!</p>
+ <div class="container d-flex justify-content-center align-items-center min-vh-100">
 
-              <form (ngSubmit)="signUp()" #signupForm="ngForm">
-                <!-- 2 column grid layout with text inputs for the first and last names -->
-                <div class="row">
-                  <div class="col-md-12 mb-4">
-                    <div class="mb-12">
-                      <label for="newUsername" class="form-label">Username:</label>
-                      <input type="text" class="form-control" id="newUsername" name="newUsername" [(ngModel)]="signUpData.username" required />
-                    </div>
-                    <div class="mb-12">
-                      <label for="email" class="form-label">Email:</label>
-                      <input type="text" class="form-control" id="email" name="email" [(ngModel)]="signUpData.email" required />
-                    </div>
-                    <div class="mb-12">
-                      <label for="newUsername" class="form-label">Num Inscrit:</label>
-                      <input type="text" class="form-control" id="newNumInscrit" name="newNumInscrit" [(ngModel)]="signUpData.numInscrit" required />
-                    </div>
-                    <div class="mb-12">
-                      <label for="newUsername" class="form-label">Classe:</label>
-                      <input type="text" class="form-control" id="newUserClasse" name="newUserClasse" [(ngModel)]="signUpData.userClasse" required />
-                    </div>
-                    <div class="mb-12">
-                      <label for="newPassword" class="form-label">Password:</label>
-                      <input type="password" class="form-control" id="newPassword" name="newPassword" [(ngModel)]="signUpData.password" required />
-                    </div>
+  <!----------------------- Conteneur de Connexion -------------------------->
 
-                    <button type="submit" class="btn btn-primary">Sign up</button>
-                  </div>
-                </div>
-              </form>
+     <div class="row border rounded-5 p-3 bg-white shadow box-area">
 
+  <!--------------------------- Boîte de Gauche ----------------------------->
+
+     <div class="col-md-6  d-flex justify-content-center align-items-center flex-column left-box color">
+         <div class="featured-image mb-3">
+          <img src="assets/images/logo.png"class="img-fluid logo-signup" >
+         </div>
+         <p class="text-white fs-2" style="font-family: 'Courier New', Courier, monospace; font-weight: 600;">Soyez Vérifié </p>
+         <small class="text-white text-wrap text-center" style="width: 17rem;font-family: 'Courier New', Courier, monospace;">Rejoignez cette plateforme pour faciliter vos études.</small>
+     </div> 
+
+  <!-------------------- ------ Boîte de Droite ---------------------------->
+      
+     <div class="col-md-6 right-box">
+        <div class="row align-items-center">
+          <div class="header-text mb-4">
+              <h2>Bonjour, encore</h2>
+              <p>Nous sommes heureux de vous avoir de retour.</p>
               <div *ngIf="signupForm.submitted && signupForm.invalid" class="alert alert-danger">
-                Please fill in all required fields.
+                Veuillez remplir tous les champs obligatoires.
               </div>
-
-              <div class="d-flex justify-content-center text-center mt-4 pt-1">
-                <a href="#!" class="text-white"><i class="fab fa-facebook-f fa-lg"></i></a>
-                <a href="#!" class="text-white"><i class="fab fa-twitter fa-lg mx-4 px-2"></i></a>
-                <a href="#!" class="text-white"><i class="fab fa-google fa-lg"></i></a>
-              </div>
-
-            </div>
-
-            <div>
-              <p class="mb-0">Already have an account? <a href="#sign-in" class="text-white-50 fw-bold">Login</a></p>
-            </div>
-
           </div>
+              <div class="l-form">
+                  <form (ngSubmit)="signUp()" #signupForm="ngForm" class="form">
+                      <h2 class="form__title">S'inscrire</h2>
+      
+                      <div class="form__div">
+                          <input type="text" class="form__input form-control" name="newUsername" [(ngModel)]="signUpData.username" required placeholder=" ">
+                          <label for="" class="form__label">Nom d'utilisateur</label>
+                      </div>
+      
+                      <div class="form__div">
+                          <input type="email" class="form__input form-control" name="email" [(ngModel)]="signUpData.email" required placeholder=" ">
+                          <label for="" class="form__label">Email</label>
+                      </div>
+
+                      <div class="form__div">
+                          <input type="text" class="form__input form-control" name="newNumInscrit" [(ngModel)]="signUpData.numInscrit" required placeholder=" ">
+                          <label for="" class="form__label">Numero d'inscrit</label>
+                      </div>
+
+                      <div class="form__div">
+                          <input type="text" class="form__input form-control" name="newUserClasse" [(ngModel)]="signUpData.userClasse" required placeholder=" ">
+                          <label for="" class="form__label">Votre classe</label>
+                      </div>
+      
+                      <div class="form__div">
+                          <input type="password" class="form__input form-control" name="newPassword" [(ngModel)]="signUpData.password" required placeholder=" ">
+                          <label for="" class="form__label">Mot de passe</label>
+                      </div>
+      
+                      <input type="submit" class=" btn btn-lg   w-100 fs-6 color mb-3" value="S'inscrire">
+                      <small class="signin">
+                        Vous avez déjà un compte ? <a (click)="navigateToSignIn()" style="cursor: pointer">Connectez-vous</a>
+                      </small>
+                  </form>
+                  
+              </div>
         </div>
-      </div>
+     </div> 
+
     </div>
   </div>
-</section>
