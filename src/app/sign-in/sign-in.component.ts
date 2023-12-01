@@ -53,4 +53,7 @@ export class SignInComponent {
       }
     );
   }
+  navigateToSignUp() {
+    this.router.navigate(['/sign-up']);
+  }
 }
