@@ -1,12 +1,48 @@
-
-<div class="sidebar">
-  <div class="logo">
-
-    <span>Logo</span>
+<div *ngIf="shouldShowSidebar" class="sidebar" [class.open]="isOpen$ | async">
+  <div class="logo-details">
+    
+    <div class="logo_name"><img src="assets/images/logoApp.png" alt="profileImg" width="70px">Education</div>
+    <i class='bx bx-menu' id="btn" (click)="toggleSidebar()"></i>
   </div>
-  <ul class="nav">
-    <li><a routerLink="/">list of requests</a></li>
+  <ul class="nav-list">
+    <li>
+      <i class='bx bx-search'></i>
+      <input type="text" placeholder="Search...">
+      <span class="tooltip">Search</span>
+    </li>
+    <li>
+      <a href="#">
+        <i class='bx bx-grid-alt'></i>
+        <span class="links_name">Dashboard</span>
+      </a>
+      <span class="tooltip">Dashboard</span>
+    </li>
+    <li>
+      <a href="#">
+        <i class='bx bx-user'></i>
+        <span class="links_name">Gestion des admissions</span>
+      </a>
+      <span class="tooltip">Gestion des admissions</span>
+    </li>
+    <li>
+      <a href="#">
+        <i class='bx bx-cog'></i>
+        <span class="links_name">Setting</span>
+      </a>
+      <span class="tooltip">Setting</span>
+    </li>
+    <li class="profile">
+      <div class="profile-details">
+        <img src="assets/images/logoApp.png" alt="profileImg">
+        <div class="name_job">
+          <div class="name">{{ username }}</div>
+          <div class="job">{{ useremail }}</div>
+        </div>
+      </div>
+      <a (click)="logout()" style="cursor: pointer"><i class='bx bx-log-out ' id="log_out"></i></a>
+    </li>
   </ul>
-  <a (click)="logout()">Logout</a>
 </div>
-
+<section class="home-section">
+  <router-outlet></router-outlet>
+</section>

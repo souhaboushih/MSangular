@@ -12,13 +12,14 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SideComponent } from './side/side.component';
+import { HomeComponent } from './home/home.component';
 
 
 
 @NgModule({
-  declarations: [AppComponent, UsersComponent, SignInComponent, SignUpComponent, SideComponent],
+  declarations: [AppComponent, UsersComponent, SignInComponent, SignUpComponent, SideComponent, HomeComponent],
   imports: [BrowserModule, HttpClientModule, FormsModule, AppRoutingModule, BrowserAnimationsModule],
   providers: [UserService],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent,SideComponent],
 })
 export class AppModule {}

@@ -1,8 +1,8 @@
 // side.component.ts
-
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {UserService} from "../sevices/user.service";
+import { SidebarService } from "../sevices/siderbar.service";
 
 
 @Component({
@@ -10,10 +10,35 @@ import {UserService} from "../sevices/user.service";
   templateUrl: './side.component.html',
   styleUrls: ['./side.component.css']
 })
-export class SideComponent {
+export class SideComponent implements OnInit {
+  isOpen$ = this.sidebarService.isOpen$;
+  shouldShowSidebar: boolean = true;
+  username: string = '';
+  useremail: string = '';
+  constructor(private userService: UserService, private router: Router, private sidebarService: SidebarService) { }
 
-  constructor(private userService: UserService, private router: Router) { }
+  ngOnInit() {
+    // Souscrivez aux changements d'URL pour décider si le sidebar doit être affiché
+    this.router.events.subscribe((val) => {
+      this.shouldShowSidebar = !this.router.url.includes('/sign-in') && !this.router.url.includes('/sign-up');
+    });
+  
+  this.userService.getAuthenticatedUser().subscribe(
+      authenticatedUser => {
+        if (authenticatedUser) {
+          this.username = authenticatedUser.username;
+          this.useremail = authenticatedUser.email;
+        }
+      },
+      error => {
+        console.error(error);
+      }
+    );
+  }
 
+  toggleSidebar() {
+    this.sidebarService.toggleSidebar();
+  }
   logout(): void {
     this.userService.logout().subscribe(
       response => {

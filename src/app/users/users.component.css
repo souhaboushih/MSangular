@@ -1,11 +1,8 @@
-/* Style for the table container */
-.main-content {
-  background-color: #f8f9fa;
-  padding: 20px;
-  margin-left: 220px; /* Ajoutez un espace sur le côté droit de la barre latérale */
-}
 
-/* Style for the table header */
+table{
+  width: 90%;
+  margin: 0 auto;
+}
 .table th {
   background-color: #3498db;
   color: #fff;
@@ -27,19 +24,22 @@
 /* Style for table cells */
 .table td {
   padding: 8px; /* Réduisez la hauteur du padding */
-  text-align: left;
+  
   border: 1px solid #ddd;
 }
+
 
 /* Style for buttons */
 .table button {
   cursor: pointer;
   padding: 6px 10px; /* Réduisez la hauteur du padding */
   border: none;
+  margin-left: 10px;
   border-radius: 5px;
   font-size: 12px; /* Réduisez la taille de la police */
-  transition: background-color 0.3s;
+  transition: background-color 2s;
 }
+
 
 /* Style for Accept button */
 .table .btn-success {
@@ -63,12 +63,7 @@
   .table {
     font-size: 10px; /* Réduisez la taille de la police pour les écrans plus petits */
   }
-}
-
-/* Style for the sidebar */
-.sidebar {
-  width: 200px;
-  background-color: #333;
-  color: #fff;
-  padding: 20px;
+  .table button {
+    font-size: 10px;
+  }
 }
