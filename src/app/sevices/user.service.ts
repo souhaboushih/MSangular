@@ -56,6 +56,12 @@ export class UserService {
       catchError(this.handleError)
     );
   }
+  getAuthenticatedUser(): Observable<Users | null> {
+    // Assuming your server provides an endpoint to get the authenticated user
+    return this.http.get<Users>(`${this.apiUrl}/authenticated-user`).pipe(
+      catchError(this.handleHttpError)
+    );
+  }
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
@@ -66,7 +72,7 @@ export class UserService {
     return throwError('Une erreur est survenue. Veuillez réessayer plus tard.');
   }
 
-  private handleHttpError(error: HttpErrorResponse) {
+  private handleHttpError(error: HttpErrorResponse): Observable<any> {
     if (error.status === 401) {
       // Handle unauthorized error
       console.error('Unauthorized access. Please log in.');
@@ -75,5 +81,7 @@ export class UserService {
       console.error('Access forbidden. You do not have permission to perform this action.');
     }
     // Add more cases as needed
+    return throwError('Une erreur est survenue. Veuillez réessayer plus tard.');
+
   }
 }

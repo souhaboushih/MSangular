@@ -1,32 +1,28 @@
-<app-side></app-side>
-
-<main class="main-content">
-  <div class="container">
-    <div class="text-center">
-
-      <header class="my-4">
-        <h2>list of requests</h2>
-      </header>
-
-      <table *ngIf="users && users.length > 0" class="table table-striped table-bordered">
-        <thead class="thead-dark">
-        <tr>
-          <th>Username</th>
-          <th>Email</th>
-          <th>Action</th>
-        </tr>
+     <div class="text ">Liste des inscriptions en attente</div>
+    <div class="main mt-4">
+      <table *ngIf="users && users.length > 0" class="table  table-striped ">
+        <thead class="table-light">
+          <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th >Action</th>
+          </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let user of users">
-          <td>{{ user.username }}</td>
-          <td>{{ user.email }}</td>
-          <td>
-            <button class="btn btn-success" (click)="acceptUser(user._id)" [disabled]="user.etat === 1">Accepte</button>
-            <button class="btn btn-danger" (click)="rejectUser(user._id)">Refuse</button>
-          </td>
-        </tr>
+          <tr *ngFor="let user of users">
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td class="text-center">
+              <button class="btn btn-success mr-3" (click)="acceptUser(user._id)" [disabled]="user.etat === 1">Accepte</button>
+              <button class="btn btn-danger" (click)="rejectUser(user._id)">Refuse</button>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
-  </div>
-</main>
+
+      
+
+     
+  
+
