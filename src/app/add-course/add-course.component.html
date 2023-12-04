@@ -1,40 +1,40 @@
 <!-- add-course.component.html -->
 <div class="container d-flex justify-content-center align-items-center min-vh-100">
-
   <div class="row border rounded-5 p-3 bg-white shadow box-area">
     <div class="col-md-6 d-flex justify-content-center align-items-center flex-column left-box color">
-      <!-- Your existing content for the left box -->
+      <!-- Existing content for the left box -->
       <div class="featured-image mb-3">
-        <img src="assets/images/course.png"class="img-fluid logo-signup" >
-       </div>
+        <img src="assets/images/course.png" class="img-fluid logo-signup" alt="Course Logo">
+      </div>
     </div>
     <div class="col-md-6 right-box">
       <div class="row align-items-center">
         <div class="header-text mb-4">
-          <!-- Your existing header text -->
+          <!-- Existing header text -->
         </div>
         <div class="l-form">
           <form (ngSubmit)="onSubmit()" #courseForm="ngForm" class="form">
             <h2 class="form__title">Ajouter un Cours</h2>
 
             <div class="form__div">
-              <input type="text" class="form__input form-control" name="title" [(ngModel)]="courseData.title" required placeholder=" ">
-              <label for="" class="form__label">Titre du Cours</label>
+              <input type="text" class="form__input form-control" name="title" [(ngModel)]="courseData.nom" required placeholder=" ">
+              <label class="form__label" for="title">Titre du Cours</label>
             </div>
 
             <div class="form__div">
               <textarea class="form__input form-control" name="description" [(ngModel)]="courseData.description" required placeholder=" "></textarea>
-              <label for="" class="form__label">Description</label>
+              <label class="form__label" for="description">Description</label>
             </div>
 
             <div class="form__div">
-              <input type="date" class="form__input form-control" name="date" [(ngModel)]="courseData.date" required placeholder=" ">
+              <input type="text" class="form__input form-control" name="date" [(ngModel)]="courseData.datedebut" required placeholder=" ">
               <label for="" class="form__label">Date</label>
             </div>
 
+
             <div class="form__div">
               <input type="file" class="form__input form-control" name="file" (change)="onFileSelected($event)" accept=".pdf, .txt">
-              <label for="" class="form__label">Fichier (PDF ou TXT)</label>
+              <label class="form__label" for="file">Fichier (PDF ou TXT)</label>
             </div>
 
             <input type="submit" class="btn btn-lg w-100 fs-6 color mb-3" value="Ajouter le Cours">

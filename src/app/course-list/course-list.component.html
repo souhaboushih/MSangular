@@ -1,0 +1,17 @@
+
+<div class="course-list">
+  <h2>Liste des Cours</h2>
+
+  <div *ngIf="courses.length === 0">
+    <p>Aucun cours disponible.</p>
+  </div>
+
+  <div *ngFor="let course of courses">
+    <div class="course-item">
+      <h3>{{ course.title }}</h3>
+      <p>{{ course.description }}</p>
+      <p>Date: {{ course.date | date }}</p>
+      <!-- Add logic to display the link or button for downloading the file -->
+    </div>
+  </div>
+</div>

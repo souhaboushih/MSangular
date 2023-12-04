@@ -14,11 +14,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SideComponent } from './side/side.component';
 import { HomeComponent } from './home/home.component';
 import { AddCourseComponent } from './add-course/add-course.component';
+import { CourseListComponent } from './course-list/course-list.component';
 
 
 
 @NgModule({
-  declarations: [AppComponent, UsersComponent, SignInComponent, SignUpComponent, SideComponent, HomeComponent, AddCourseComponent],
+  declarations: [AppComponent, UsersComponent, SignInComponent, SignUpComponent, SideComponent, HomeComponent, AddCourseComponent, CourseListComponent],
   imports: [BrowserModule, HttpClientModule, FormsModule, AppRoutingModule, BrowserAnimationsModule],
   providers: [UserService],
   bootstrap: [AppComponent,SideComponent],
