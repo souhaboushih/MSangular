@@ -1,0 +1,20 @@
+<!-- update-cours.component.html -->
+<form (ngSubmit)="onSubmit()" class="form">
+  <!-- Add other form controls as needed -->
+  <div class="form__div">
+    <input type="text" class="form__input form-control" name="nom" [(ngModel)]="updatedCourseData.nom" required placeholder=" ">
+    <label class="form__label" for="nom">Nom du Cours</label>
+  </div>
+
+  <div class="form__div">
+    <textarea class="form__input form-control" name="description" [(ngModel)]="updatedCourseData.description" required placeholder=" "></textarea>
+    <label class="form__label" for="description">Description</label>
+  </div>
+
+  <div class="form__div">
+    <input type="text" class="form__input form-control" name="datedebut" [(ngModel)]="updatedCourseData.datedebut" required placeholder=" ">
+    <label for="datedebut" class="form__label">Date de début</label>
+  </div>
+
+  <input type="submit" class="btn btn-lg w-100 fs-6 color mb-3" value="Mettre à jour le Cours">
+</form>

@@ -1,17 +1,48 @@
+<!-- add-course.component.html -->
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+  <div class="row border rounded-5 p-3 bg-white shadow box-area">
+    <!-- ... (existing content) ... -->
 
-<div class="course-list">
-  <h2>Liste des Cours</h2>
+    <!-- Add the following course list section -->
+    <div class="course-list col-md-12 mt-4">
+    <h2>Liste des Cours</h2>
 
   <div *ngIf="courses.length === 0">
     <p>Aucun cours disponible.</p>
   </div>
 
   <div *ngFor="let course of courses">
-    <div class="course-item">
-      <h3>{{ course.title }}</h3>
+    <div class="course-item mb-3">
+      <h4>Nom de cours: </h4>
+      <p>{{ course.nom }}</p>
+      <h4>Description : </h4>
       <p>{{ course.description }}</p>
-      <p>Date: {{ course.date | date }}</p>
-      <!-- Add logic to display the link or button for downloading the file -->
+      <h4>Date: </h4>
+      <p>{{ course.datedebut  }}</p>
+
+      <!-- Display the link or button for downloading the file -->
+      <ng-container *ngIf="course.fichier">
+        <a [href]="getDownloadLink(course)" download="course_file.pdf">
+          <button class="btn btn-primary">Télécharger le fichier</button>
+        </a>
+      </ng-container>
+
+      <!-- Button to delete the specific course -->
+      <button class="btn btn-danger" (click)="deleteCourse(course.id)">Supprimer ce cours</button>
     </div>
+    <!-- course-list.component.html -->
+
+<div *ngFor="let course of courses">
+  <div class="course-item mb-3">
+    <!-- ... (existing content) ... -->
+
+    <!-- Display the link or button for updating the file -->
+    <button class="btn btn-warning" (click)="updateCourse(course.id)">Modifier ce cours</button>
+  </div>
+
+  <!-- Include the update-cours component with the selected courseId -->
+  <!--<app-update-cours *ngIf="selectedCourseId === course.id" [courseId]="course.id"></app-update-cours>-->
+</div>
+
   </div>
 </div>
