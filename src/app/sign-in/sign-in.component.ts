@@ -32,8 +32,20 @@ export class SignInComponent {
           // Store the user token in localStorage or a secure storage method
           localStorage.setItem('userToken', data.token);
 
-          // Redirect to a different page (e.g., the user's dashboard)
-          this.router.navigate(['/users']);
+          if (data.etat === 1) {
+            if (data.role === 'eleve') {
+              this.router.navigate(['/eleve']); // Redirect to the eleve-page for eleve users
+            } else {
+              this.router.navigate(['/dashboard']); // Redirect to the user's dashboard for other roles
+            }
+           
+        } else {
+            this.errorMessage = 'L\'utilisateur n\'a pas encore été accepté.';
+            // Optionally, you can clear the error message after a certain delay
+            setTimeout(() => {
+                this.errorMessage = '';
+            }, 5000); // Clear the message after 5 seconds
+        }
         } else {
           // Handle unexpected response format
           this.errorMessage = 'Unexpected response from the server.';
