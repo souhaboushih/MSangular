@@ -1,6 +1,14 @@
 <!-- home.component.html -->
 <div>
-    <h1>Bienvenue sur la page d'accueil</h1>
-    <!-- Ajoutez le contenu souhaité ici -->
+  <h1>Bienvenue sur la page d'accueil</h1>
+
+  <div class="card">
+    <div class="card-header">
+      Statistiques des utilisateurs
+    </div>
+    <div class="card-body">
+      <p>Total: {{ totalUsers }}</p>
+      <p>Actifs: {{ activeUsers }}</p>
+    </div>
   </div>
-  
+</div>

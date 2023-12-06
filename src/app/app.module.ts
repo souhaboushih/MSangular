@@ -13,11 +13,13 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SideComponent } from './side/side.component';
 import { HomeComponent } from './home/home.component';
+import { EleveComponent } from './eleve/eleve.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 
 @NgModule({
-  declarations: [AppComponent, UsersComponent, SignInComponent, SignUpComponent, SideComponent, HomeComponent],
+  declarations: [AppComponent, UsersComponent, SignInComponent, SignUpComponent, SideComponent, HomeComponent, EleveComponent,NavbarComponent],
   imports: [BrowserModule, HttpClientModule, FormsModule, AppRoutingModule, BrowserAnimationsModule],
   providers: [UserService],
   bootstrap: [AppComponent,SideComponent],

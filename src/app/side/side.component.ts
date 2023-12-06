@@ -20,7 +20,7 @@ export class SideComponent implements OnInit {
   ngOnInit() {
     // Souscrivez aux changements d'URL pour décider si le sidebar doit être affiché
     this.router.events.subscribe((val) => {
-      this.shouldShowSidebar = !this.router.url.includes('/sign-in') && !this.router.url.includes('/sign-up');
+      this.shouldShowSidebar = !this.router.url.includes('/sign-in') && !this.router.url.includes('/sign-up') && !this.router.url.includes('/eleve');
     });
   
   this.userService.getAuthenticatedUser().subscribe(

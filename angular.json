@@ -30,8 +30,8 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css",
               "src/assets/style-signin.css",
-              "src/assets/style-signup.css",
-              "src/assets/style-side.css"
+              "src/assets/style-signup.css"
+              
             ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
@@ -111,5 +111,8 @@
       }
     }
   },
-  "defaultProject": "MSangular"
+  "defaultProject": "MSangular",
+  "cli": {
+    "analytics": "97ccbb26-97d4-4dc0-b7c0-ba31ded95d45"
+  }
 }

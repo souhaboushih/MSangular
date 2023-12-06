@@ -1,8 +1,8 @@
 // user.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Observable, throwError, BehaviorSubject } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 
 interface Users {
   username: string;
@@ -15,13 +15,23 @@ interface Users {
 })
 export class UserService {
   private apiUrl = 'http://localhost:3002'; // Update this with your actual Spring Boot API URL
+  private loggedInUsernameSubject: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
 
+  get loggedInUsername$(): Observable<string | null> {
+    return this.loggedInUsernameSubject.asObservable();
+  }
   constructor(private http: HttpClient) {}
 
   signIn(username: string, password: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/signIn`, { username, password }).pipe(
-      catchError(this.handleError)
-    );
+      catchError(this.handleError),
+      tap((data: any) => {
+        if (data.token) {
+          this.loggedInUsernameSubject.next(username);
+          localStorage.setItem('loggedInUsername', username);
+        }
+      })
+      );
   }
 
   signUp(username: string, password: string, email: string, numInscrit: number, userClasse: string): Observable<any> {
@@ -61,6 +71,18 @@ export class UserService {
     return this.http.get<Users>(`${this.apiUrl}/authenticated-user`).pipe(
       catchError(this.handleHttpError)
     );
+  }
+  getUserStatistics(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/user-statistics`).pipe(
+      catchError(this.handleHttpError)
+    );
+  }
+  getLoggedInUsername(): Observable<string | null> {
+    const storedUsername = localStorage.getItem('loggedInUsername');
+    if (storedUsername) {
+      this.loggedInUsernameSubject.next(storedUsername);
+    }
+    return this.loggedInUsernameSubject.asObservable();
   }
 
   private handleError(error: HttpErrorResponse) {
