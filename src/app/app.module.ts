@@ -19,6 +19,9 @@ import { CourseListComponent } from './course-list/course-list.component';
 
 // Import the CourseService
 import { CourseService } from './course.service';
+import { MatCardModule } from '@angular/material/card';
+import { EleveComponent } from './eleve/eleve.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -28,11 +31,13 @@ import { CourseService } from './course.service';
     SignUpComponent,
     SideComponent,
     HomeComponent,
+    EleveComponent,
+    NavbarComponent,
     AddCourseComponent,
     CourseListComponent,
    // UpdateCoursComponent
   ],
-  imports: [BrowserModule, HttpClientModule, FormsModule, AppRoutingModule, BrowserAnimationsModule],
+  imports: [BrowserModule, HttpClientModule, FormsModule, AppRoutingModule, BrowserAnimationsModule,MatCardModule],
   providers: [UserService, CourseService], // Add CourseService to providers
   bootstrap: [AppComponent, SideComponent],
 })

@@ -23,6 +23,9 @@
               <div class="header-text mb-4">
                    <h2>Bonjour, encore</h2>
                    <p>Nous sommes heureux de vous avoir de retour.</p>
+                   <div *ngIf="errorMessage" class="alert alert-danger">
+                    {{ errorMessage }}
+                    </div>
               </div>
               <div class="l-form">
                 <form (ngSubmit)="signIn()" class="form">
