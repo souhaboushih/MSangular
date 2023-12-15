@@ -22,6 +22,7 @@ import { CourseService } from './course.service';
 import { MatCardModule } from '@angular/material/card';
 import { EleveComponent } from './eleve/eleve.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { MatierComponent } from './matier/matier/matier.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     NavbarComponent,
     AddCourseComponent,
     CourseListComponent,
+    MatierComponent,
    // UpdateCoursComponent
   ],
   imports: [BrowserModule, HttpClientModule, FormsModule, AppRoutingModule, BrowserAnimationsModule,MatCardModule],
