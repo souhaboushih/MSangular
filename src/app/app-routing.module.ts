@@ -9,6 +9,7 @@ import { EleveComponent } from './eleve/eleve.component';
 import { AddCourseComponent } from './add-course/add-course.component';
 import { CourseListComponent } from './course-list/course-list.component';
 import { MatierComponent } from './matier/matier/matier.component';
+import { ClasseComponent } from './classe/classe/classe.component';
 const routes: Routes = [
   { path: '', redirectTo: '/users', pathMatch: 'full' },
   { path: 'users', component: UsersComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'add-course', component: AddCourseComponent },
   { path: 'course-list', component: CourseListComponent },
   { path: 'matier', component: MatierComponent },
+  { path: 'classe', component: ClasseComponent },
 ];
 
 @NgModule({
