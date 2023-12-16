@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -41,7 +42,11 @@ import { ClasseComponent } from './classe/classe/classe.component';
     ClasseComponent,
    // UpdateCoursComponent
   ],
-  imports: [BrowserModule, HttpClientModule, FormsModule, AppRoutingModule, BrowserAnimationsModule,MatCardModule],
+  imports: [BrowserModule, HttpClientModule, FormsModule, AppRoutingModule, BrowserAnimationsModule,MatCardModule,ToastrModule.forRoot({
+    timeOut: 3000, // Durée d'affichage du toast en millisecondes
+    positionClass: 'toast-top-right', // Position du toast
+    preventDuplicates: true, // Empêche l'affichage de toasts dupliqués
+  })],
   providers: [UserService, CourseService], // Add CourseService to providers
   bootstrap: [AppComponent, SideComponent],
 })
