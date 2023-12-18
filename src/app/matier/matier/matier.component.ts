@@ -25,8 +25,14 @@ export class MatierComponent implements OnInit {
   }
 
   getMatiereList(): void {
-    this.matiereService.getMatieres()
-      .subscribe(matieres => this.matieres = matieres);
+    this.matiereService.getMatieres().subscribe(
+      (matieres: any[]) => {
+        this.matieres = matieres;
+      },
+      (error) => {
+        console.error('Error fetching matieres:', error);
+      }
+    );
   }
   ajouterMatiere(): void {
     this.matiereService.addMatiere(this.nouvelleMatiere)

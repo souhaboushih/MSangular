@@ -30,7 +30,13 @@
               <input type="text" class="form__input form-control" name="date" [(ngModel)]="courseData.datedebut" required placeholder=" ">
               <label for="" class="form__label">Date</label>
             </div>
-
+            <div class="form__div">
+              <label for="matiere">Matière</label>
+              <select class="form__input form-control" name="matiere" [(ngModel)]="courseData.matiereId" required>
+                <option value="" disabled>Sélectionnez une matière</option>
+                <option *ngFor="let matiere of matieres" [value]="matiere._id">{{ matiere.nom }}</option>
+              </select>
+            </div>
 
             <div class="form__div">
               <input type="file" class="form__input form-control" name="file" (change)="onFileSelected($event)" accept=".pdf, .txt">

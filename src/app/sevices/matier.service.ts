@@ -12,7 +12,7 @@ export class MatiereService {
   constructor(private http: HttpClient, private refreshService: RefreshService) { }
 
   getMatieres(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+    return this.http.get<any[]>(`${this.apiUrl}/mat`);
   }
 
   addMatiere(newMatiere: any): Observable<any> {
