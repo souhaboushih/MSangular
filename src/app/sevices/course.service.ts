@@ -11,10 +11,9 @@ export class CourseService {
   private apiUrl = 'http://localhost:8081/cours';
 
   constructor(private http: HttpClient) {}
-
-  addCourse(courseData: FormData): Observable<any> {
-    const url = `${this.apiUrl}/ajouterCours`;
-    return this.http.post(url, courseData);
+  ajouterCours(idMatiere: string, coursData: FormData): Observable<any> {
+    const url = `${this.apiUrl}/ajouterCours/${idMatiere}`;
+    return this.http.post(url, coursData);
   }
 
   getAllCourses(): Observable<any[]> {

@@ -23,14 +23,16 @@
       <td>{{ matiere.description }}</td>
       <td>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-          <button class="btn btn-Edit me-md-2" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="preparerEdition($event, matiere)" >Edit</button>
-          <!-- Bouton Delete -->
+          <!-- Edit Button -->
+          <button class="btn btn-Edit me-md-2" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="preparerEdition($event, matiere)">Edit</button>
+          <!-- Delete Button -->
           <button class="btn btn-Delete" type="button" (click)="supprimerMatiere(matiere._id)">Delete</button>
         </div>
       </td>
     </tr>
   </tbody>
 </table>
+
 <!--Update Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
   <div class="modal-dialog modal-dialog-centered">

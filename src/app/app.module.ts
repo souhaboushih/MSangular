@@ -19,7 +19,7 @@ import { CourseListComponent } from './course-list/course-list.component';
 //import { UpdateCoursComponent } from './update-cours/update-cours.component';
 
 // Import the CourseService
-import { CourseService } from './course.service';
+import { CourseService } from './sevices/course.service';
 import { MatCardModule } from '@angular/material/card';
 import { EleveComponent } from './eleve/eleve.component';
 import { NavbarComponent } from './navbar/navbar.component';
