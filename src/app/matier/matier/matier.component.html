@@ -1,7 +1,7 @@
 <h3>Matier!</h3>
 <div class="search-box">
-  <input type="text" name="" class="search-txt" [(ngModel)]="searchNom" placeholder="Rechercher par nom" />
-  <button type="button" class="search-btn" (click)="rechercherMatieresParNom()">
+  <input type="text" name="" class="search-txt" placeholder="Rechercher par nom" />
+  <button type="button" class="search-btn">
     <i class="fa fa-search" aria-hidden="true"></i>
   </button>
 </div>
@@ -51,6 +51,17 @@
             <label for="description" class="form-label">Description</label>
             <textarea class="form-control" id="description" [(ngModel)]="nouvelleMatiere.description" name="description" required rows="3" placeholder="Description"></textarea>
           </div>
+          <div class="mb-3">
+            <label for="classes">Classes:</label>
+            <div *ngFor="let classe of classes">
+                <input
+                    type="checkbox"
+                    [value]="classe._id"
+                    (change)="onClass($event, classe._id)"
+                    [checked]="nouvelleMatiere.classes.includes(classe._id)">
+                {{ classe.nom }}
+            </div>
+        </div>
           <div class="modal-footer">
             <button type="button" class="btn close" data-bs-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-Edit">Edit</button>
@@ -61,31 +72,30 @@
   </div>
 </div>
 <!-- AjoutModal -->
-<div class="modal fade" id="ajoutModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
+<div class="modal fade" id="ajoutModal" tabindex="-1" aria-labelledby="ajoutModalLabel" aria-hidden="true" data-bs-backdrop="false">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add Matière</h5>
+        <h5 class="modal-title" id="ajoutModalLabel">Add Matière</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form (ngSubmit)="ajouterMatiere()">
+        <form (ngSubmit)="onSubmit()">
           <div class="mb-3">
             <label for="nom" class="form-label">Name</label>
-            <input type="text" class="form-control" id="nom" [(ngModel)]="nouvelleMatiere.nom" name="nom" placeholder="Name" required>
+            <input type="text" class="form-control" id="nom" [(ngModel)]="matiereData.nom" name="nom" placeholder="Name" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" [(ngModel)]="matiereData.description" name="description" rows="3" placeholder="Description" required></textarea>
           </div>
           <div class="mb-3">
             <label for="classes">Classes:</label>
-            <select class="form-control" [(ngModel)]="nouvelleMatiere.classes" name="classes" required>
-              <option value="" disabled>Select Class</option>
-              <option *ngFor="let classe of classes" [value]="classe._id">{{ classe.nom }}</option>
-            </select>
+          <div *ngFor="let classe of classes">
+            <input type="checkbox" [value]="classe._id" (change)="onClassChange($event)"> {{ classe.nom }}
           </div>
-          <div class="mb-3">
-            <label for="description" class="form-label">Description</label>
-            <textarea class="form-control" id="description" [(ngModel)]="nouvelleMatiere.description" name="description" rows="3" placeholder="Description" required></textarea>
           </div>
-
           <div class="modal-footer">
             <button type="button" class="btn close" data-bs-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-primary">ADD</button>
@@ -95,5 +105,3 @@
     </div>
   </div>
 </div>
-
-
