@@ -14,7 +14,7 @@ export class ClasseService {
   constructor(private http: HttpClient, private refreshService: RefreshService) { }
 
   getClasses(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+    return this.http.get<any[]>(`${this.apiUrl}/clas`);
   }
   addClasse(nouvelleClasse: any): Observable<any> {
     return this.http.post<any>(this.apiUrl, nouvelleClasse);

@@ -2,6 +2,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 import { RefreshService } from './refresh.service';
 @Injectable({
   providedIn: 'root'
@@ -14,10 +16,23 @@ export class MatiereService {
   getMatieres(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/mat`);
   }
-
-  addMatiere(newMatiere: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl, newMatiere);
+  getClassesByMatiereId(matiereId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/${matiereId}`);
   }
+  addMatiere(newMatiere: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}`, newMatiere).pipe(
+      switchMap(matiere => {
+        // Ajouter une entrée dans ClasseMatiere ici
+        const classeMatiereData = {
+          matiereId: matiere._id,
+          classeId: newMatiere.classes // Supposant que newMatiere.classes contient l'ID de la classe sélectionnée
+        };
+        return this.http.post<any>(`${this.apiUrl}/classMatiere`, classeMatiereData);
+      })
+    );
+  }
+
+
 
   deleteMatiere(id: string): Observable<any> {
     const url = `${this.apiUrl}/${id}`;
