@@ -1,0 +1,42 @@
+<!-- add-eleve-modal.component.html -->
+<div class="text">Ajouter un Élève</div>
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+  <div class="row border rounded-5 p-3 bg-white shadow box-area formu">
+    <div *ngIf="signupForm.submitted && signupForm.invalid" class="alert alert-danger">
+      Veuillez remplir tous les champs obligatoires.
+    </div>
+
+    <div class="l-form">
+      <form #signupForm="ngForm" (ngSubmit)="addEleve()" class="form">
+        <h2 class="form__title text-center">INSCRIPTION D'UN ÉLÈVE </h2>
+
+        <div class="form__div">
+          <input type="text" class="form__input form-control" name="newUsername" [(ngModel)]="signUpData.username" required placeholder=" ">
+          <label for="" class="form__label">Nom d'utilisateur</label>
+        </div>
+
+        <div class="form__div">
+          <input type="email" class="form__input form-control" name="email" [(ngModel)]="signUpData.email" required placeholder=" ">
+          <label for="" class="form__label">Email</label>
+        </div>
+
+        <div class="form__div">
+          <input type="text" class="form__input form-control" name="newNumInscrit" [(ngModel)]="signUpData.numInscrit" required placeholder=" ">
+          <label for="" class="form__label">Numero d'inscrit</label>
+        </div>
+
+        <div class="form__div">
+          <input type="text" class="form__input form-control" name="newUserClasse" [(ngModel)]="signUpData.userClasse" required placeholder=" ">
+          <label for="" class="form__label">Votre classe</label>
+        </div>
+
+        <div class="form__div">
+          <input type="password" class="form__input form-control" name="newPassword" [(ngModel)]="signUpData.password" required placeholder=" ">
+          <label for="" class="form__label">Mot de passe</label>
+        </div>
+
+        <input type="submit" class="btn btn-lg w-100 fs-6 color mb-3" value="S'inscrire">
+      </form>
+    </div>
+  </div>
+</div>

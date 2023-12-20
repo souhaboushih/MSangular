@@ -2,7 +2,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -26,6 +26,20 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { MatierComponent } from './matier/matier/matier.component';
 import { ClasseComponent } from './classe/classe/classe.component';
 
+import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
+
+
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { EleveService } from './sevices/eleve.service';
+import { AddEleveComponent } from './add-eleve/add-eleve.component';
+import { ListEleveComponent } from './list-eleve/list-eleve.component';
+import { UpdateEleveComponent } from './update-eleve/update-eleve.component';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,14 +54,16 @@ import { ClasseComponent } from './classe/classe/classe.component';
     CourseListComponent,
     MatierComponent,
     ClasseComponent,
-   // UpdateCoursComponent
+    AddEleveComponent,
+    ListEleveComponent,
+    UpdateEleveComponent
   ],
-  imports: [BrowserModule, HttpClientModule, FormsModule, AppRoutingModule, BrowserAnimationsModule,MatCardModule,ToastrModule.forRoot({
+  imports: [BrowserModule, HttpClientModule, FormsModule, AppRoutingModule, MatButtonModule, MatDialogModule, MatTableModule, BrowserAnimationsModule, MatIconModule, ReactiveFormsModule, MatInputModule, MatCardModule,ToastrModule.forRoot({
     timeOut: 3000, // Durée d'affichage du toast en millisecondes
     positionClass: 'toast-top-right', // Position du toast
     preventDuplicates: true, // Empêche l'affichage de toasts dupliqués
   })],
-  providers: [UserService, CourseService], // Add CourseService to providers
+  providers: [UserService, CourseService, EleveService], // Add CourseService to providers
   bootstrap: [AppComponent, SideComponent],
 })
 export class AppModule {}
