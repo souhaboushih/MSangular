@@ -12,6 +12,9 @@ export class CourseListComponent implements OnInit {
   matieres: any[] = [];
   selectedMatiereId: string = '';
   selectedCourseId: string = '';
+  // course-list.component.ts
+selectedCourse: any = '';
+
   constructor(private courseService: CourseService, private matiereService: MatiereService,private route: ActivatedRoute) {}
 
   ngOnInit(): void {
@@ -68,8 +71,21 @@ getCoursForMatiere(matiereId: string): void {
     );
   }
   updateCourse(courseId: string): void {
-    // Set the selected course id to show the update form
     this.selectedCourseId = courseId;
+    this.selectedCourse = this.courses.find(c => c.id === courseId); // Assurez-vous d'avoir une propriété unique comme 'id' pour chaque cours
+  }
+  onSubmit(): void {
+    if (this.selectedCourse) {
+      this.courseService.updateCourse(this.selectedCourseId, this.selectedCourse).subscribe(
+        () => {
+          console.log('Course updated successfully');
+          // Actualisez la liste des cours ou effectuez d'autres actions nécessaires
+        },
+        (error) => {
+          console.error('Error updating course:', error);
+        }
+      );
+    }
   }
 
    loadCourses(): void {
