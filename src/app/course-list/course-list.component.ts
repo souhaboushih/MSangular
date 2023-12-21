@@ -34,7 +34,6 @@ getCoursForMatiere(matiereId: string): void {
     }
 );
 
-
 }
 
   getDownloadLink(course: any): string {
