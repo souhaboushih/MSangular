@@ -7,9 +7,15 @@
     <div class="course-list col-md-8 mt-4"> <!-- Adjusted col-md-8 for the course list -->
       <h2>Liste des Cours</h2>
 
-      <div *ngIf="courses.length === 0">
+
+      <!-- Affichage des cours -->
+      <ul *ngIf="courses && courses.length">
+        <li *ngFor="let cour of courses">{{ cour.nom }}</li>
+      </ul>
+      <!-- <div *ngIf="courses.length === 0">
         <p>Aucun cours disponible.</p>
-      </div>
+      </div> -->
+      <div  >
       <div *ngFor="let course of courses">
         <div class="course-item mb-3">
           <h4>Nom de cours: </h4>
@@ -18,9 +24,7 @@
           <p>{{ course.description }}</p>
           <h4>Date: </h4>
           <p>{{ course.datedebut  }}</p>
-
-          <!-- Display the link or button for downloading the file -->
-          <ng-container *ngIf="course.fichier">
+           <ng-container *ngIf="course.fichier">
             <a [href]="getDownloadLink(course)" download="course_file.pdf">
               <button class="btn btn-lg w-8 fs-6 color mb-3">
                 <i class="bi bi-download"></i> Télécharger le fichier
@@ -33,21 +37,15 @@
             </div>
 
               <div class="course-item mb-3">
-                <!-- ... (existing content) ... -->
-
-                <!-- Display the link or button for updating the file -->
                 <button class="btn btn-warning" (click)="updateCourse(course.id)">
                   <i class="bi bi-pencil"></i> Modifier ce cours
                 </button>
               </div>
 
           </ng-container>
-
-          <!-- Button to delete the specific course -->
-
-        </div>
+</div>
       </div>
-
+    </div>
     </div>
   </div>
 </div>

@@ -1,21 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { CourseService } from '../sevices/course.service';
 import { MatiereService } from '../sevices/matier.service';
-
+interface CourseData {
+  nom: string;
+  description: string;
+  datedebut: Date | string;
+  matiereId: string;
+}
 @Component({
   selector: 'app-add-course',
   templateUrl: './add-course.component.html',
   styleUrls: ['./add-course.component.css'],
 })
 export class AddCourseComponent implements OnInit {
-  courseData: { nom: string, description: string, datedebut: string, matiereId: string } = {
+  courseData: CourseData = {
     nom: '',
     description: '',
-    datedebut: '',
-    matiereId: '', // Add matiereId to the courseData
+    datedebut: new Date(),
+    matiereId: '',
   };
+
   selectedFile: File | null = null;
   matieres: any[] = [];
+
   constructor(private courseService: CourseService, private matiereService: MatiereService) {}
 
   ngOnInit() {
@@ -28,22 +35,18 @@ export class AddCourseComponent implements OnInit {
       this.selectedFile = fileList[0];
     }
   }
-  onSelectMatiere(): void {
-    // This method is called when a matière is selected in the dropdown
-    console.log('Selected Matiere ID:', this.courseData.matiereId);
-  }
-
 
   onSubmit(): void {
     if (this.isValidForm() && this.courseData.matiereId) {
       const formData = new FormData();
       formData.append('nom', this.courseData.nom);
       formData.append('description', this.courseData.description);
-      formData.append('datedebut', this.courseData.datedebut);
+      formData.append('datedebut', this.convertDateToString(this.courseData.datedebut));
 
       if (this.selectedFile) {
         formData.append('fichier', this.selectedFile, this.selectedFile.name);
       }
+
       this.courseService.ajouterCours(this.courseData.matiereId, formData).subscribe(
         (response) => {
           console.log('Course added successfully:', response);
@@ -56,6 +59,16 @@ export class AddCourseComponent implements OnInit {
     } else {
       console.error('Please fill in all required fields and select a matière.');
     }
+  }
+
+  convertDateToString(date: Date | string): string {
+    if (typeof date === 'string') {
+        return date; // Si c'est déjà une chaîne, retournez-la directement
+    }
+    if (date instanceof Date && !isNaN(date.getTime())) {
+        return date.toISOString();
+    }
+    throw new Error('Invalid date provided');
   }
 
 
@@ -75,7 +88,7 @@ export class AddCourseComponent implements OnInit {
   }
 
   private resetForm(): void {
-    this.courseData = { nom: '', description: '', datedebut: '', matiereId: '' };
+    this.courseData = { nom: '', description: '', datedebut: new Date(), matiereId: '' };
     this.selectedFile = null;
   }
 }

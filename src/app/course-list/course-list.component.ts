@@ -1,8 +1,7 @@
-// course-list.component.ts
-
 import { Component, OnInit } from '@angular/core';
 import { CourseService } from '../sevices/course.service';
-
+import { MatiereService } from '../sevices/matier.service';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-course-list',
   templateUrl: './course-list.component.html',
@@ -10,12 +9,33 @@ import { CourseService } from '../sevices/course.service';
 })
 export class CourseListComponent implements OnInit {
   courses: any[] = [];
-  selectedCourseId: string | null = null;
-  constructor(private courseService: CourseService) {}
+  matieres: any[] = [];
+  selectedMatiereId: string = '';
+  selectedCourseId: string = '';
+  constructor(private courseService: CourseService, private matiereService: MatiereService,private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.loadCourses();
+
+    const matiereId = this.route.snapshot.paramMap.get('matiereId');
+    console.log('matiereId en cours:', matiereId);
+    if (matiereId) {
+      this.getCoursForMatiere(matiereId);
+    }
   }
+
+getCoursForMatiere(matiereId: string): void {
+  this.courseService.getCoursByMatiere(matiereId).subscribe(
+    (cours: any[]) => {
+        console.log('Cours reçus:', cours);
+        this.courses = cours;
+    },
+    error => {
+        console.error('Erreur lors de la récupération des cours par matière:', error);
+    }
+);
+
+
+}
 
   getDownloadLink(course: any): string {
     return course.fichier;
@@ -53,7 +73,7 @@ export class CourseListComponent implements OnInit {
     this.selectedCourseId = courseId;
   }
 
-  private loadCourses(): void {
+   loadCourses(): void {
     this.courseService.getAllCourses().subscribe(
       (data) => {
         this.courses = data;

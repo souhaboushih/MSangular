@@ -8,14 +8,17 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class CourseService {
-  private apiUrl = 'http://localhost:8081/cours';
-
+  private apiUrl = 'http://localhost:8888/SPRINT3/cours';
+  private  api = 'http://localhost:8081/cours';
   constructor(private http: HttpClient) {}
   ajouterCours(idMatiere: string, coursData: FormData): Observable<any> {
     const url = `${this.apiUrl}/ajouterCours/${idMatiere}`;
     return this.http.post(url, coursData);
   }
-
+  getCoursByMatiere(matiereId: string): Observable<any[]> {
+    const url = `${this.api}/coursByMatiere/${matiereId}`;
+    return this.http.get<any[]>(url);
+}
   getAllCourses(): Observable<any[]> {
     const url = this.apiUrl;
     return this.http.get<any[]>(url);

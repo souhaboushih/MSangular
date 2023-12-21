@@ -1,6 +1,9 @@
 // app.module.ts
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { MatDatepickerModule } from '@angular/material/datepicker'
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
@@ -25,6 +28,7 @@ import { EleveComponent } from './eleve/eleve.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MatierComponent } from './matier/matier/matier.component';
 import { ClasseComponent } from './classe/classe/classe.component';
+import { MatierCourComponent } from './matier-cour/matier-cour.component';
 
 @NgModule({
   declarations: [
@@ -40,9 +44,12 @@ import { ClasseComponent } from './classe/classe/classe.component';
     CourseListComponent,
     MatierComponent,
     ClasseComponent,
+    MatierCourComponent,
    // UpdateCoursComponent
   ],
-  imports: [BrowserModule, HttpClientModule, FormsModule, AppRoutingModule, BrowserAnimationsModule,MatCardModule,ToastrModule.forRoot({
+  imports: [BrowserModule, HttpClientModule,MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule, FormsModule, AppRoutingModule, BrowserAnimationsModule,MatCardModule,ToastrModule.forRoot({
     timeOut: 3000, // Durée d'affichage du toast en millisecondes
     positionClass: 'toast-top-right', // Position du toast
     preventDuplicates: true, // Empêche l'affichage de toasts dupliqués
