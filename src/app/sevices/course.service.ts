@@ -8,11 +8,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class CourseService {
-  private apiUrl = 'http://localhost:8888/SPRINT3/cours';
+  //private apiUrl = 'http://localhost:8888/SPRINT3/cours';
   private  api = 'http://localhost:8081/cours';
   constructor(private http: HttpClient) {}
   ajouterCours(idMatiere: string, coursData: FormData): Observable<any> {
-    const url = `${this.apiUrl}/ajouterCours/${idMatiere}`;
+    const url = `${this.api}/ajouterCours/${idMatiere}`;
     return this.http.post(url, coursData);
   }
   getCoursByMatiere(matiereId: string): Observable<any[]> {
@@ -20,22 +20,22 @@ export class CourseService {
     return this.http.get<any[]>(url);
 }
   getAllCourses(): Observable<any[]> {
-    const url = this.apiUrl;
+    const url = this.api;
     return this.http.get<any[]>(url);
   }
 
   updateCourse(courseId: string, courseData: FormData): Observable<any> {
-    const url = `${this.apiUrl}/updateCours/${courseId}`;
+    const url = `${this.api}/updateCours/${courseId}`;
     return this.http.put(url, courseData); // Use HTTP PUT for updates
   }
 
   deleteCourse(courseId: string): Observable<any> {
-    const url = `${this.apiUrl}/delete/${courseId}`;
+    const url = `${this.api}/delete/${courseId}`;
     return this.http.delete(url);
   }
 
   deleteAllCourses(): Observable<any> {
-    const url = `${this.apiUrl}/deleteAll`;
+    const url = `${this.api}/deleteAll`;
     return this.http.delete(url);
   }
 }
