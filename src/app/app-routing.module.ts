@@ -11,9 +11,6 @@ import { CourseListComponent } from './course-list/course-list.component';
 import { MatierComponent } from './matier/matier/matier.component';
 import { ClasseComponent } from './classe/classe/classe.component';
 import { MatierCourComponent } from './matier-cour/matier-cour.component';
-import { ListEleveComponent } from './list-eleve/list-eleve.component';
-import { AddEleveComponent } from './add-eleve/add-eleve.component';
-import { UpdateEleveComponent } from './update-eleve/update-eleve.component';
 const routes: Routes = [
   { path: '', redirectTo: '/users', pathMatch: 'full' },
   { path: 'users', component: UsersComponent },

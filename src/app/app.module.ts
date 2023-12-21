@@ -29,9 +29,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { MatierComponent } from './matier/matier/matier.component';
 import { ClasseComponent } from './classe/classe/classe.component';
 import { MatierCourComponent } from './matier-cour/matier-cour.component';
-import { AddEleveComponent } from './add-eleve/add-eleve.component';
-import { ListEleveComponent } from './list-eleve/list-eleve.component';
-import { UpdateEleveComponent } from './update-eleve/update-eleve.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,9 +45,6 @@ import { UpdateEleveComponent } from './update-eleve/update-eleve.component';
     MatierComponent,
     ClasseComponent,
     MatierCourComponent,
-    AddEleveComponent,
-    ListEleveComponent,
-    UpdateEleveComponent
    // UpdateCoursComponent
   ],
   imports: [BrowserModule, HttpClientModule,MatDatepickerModule,
