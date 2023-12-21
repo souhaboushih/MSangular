@@ -12,7 +12,7 @@ import { SuccessMessageService } from '../sevices/success-message.service';
   styleUrls: ['./add-eleve.component.css']
 })
 export class AddEleveComponent {
-  signUpData = { username: '', password: '', email: '', numInscrit: 0, userClasse: '' };
+  signUpData = { username: '', password: '', email: '', numInscrit: '', userClass: '' };
 
   constructor(private eleveService: EleveService, private router: Router, private successMessageService: SuccessMessageService) {}
 
@@ -24,14 +24,14 @@ export class AddEleveComponent {
     }
   
     // Parse numInscrit to number
-    this.signUpData.numInscrit = +this.signUpData.numInscrit;
+    
   
     this.eleveService.addEleve(
       this.signUpData.username,
       this.signUpData.password,
       this.signUpData.email,
       this.signUpData.numInscrit,
-      this.signUpData.userClasse
+      this.signUpData.userClass
     ).subscribe(
       (data) => {
         console.log('Réponse du service:', data);

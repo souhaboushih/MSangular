@@ -17,11 +17,14 @@ export class EleveService {
   getEleves(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/eleves`);
   }
+  getEleveDetails(eleveId: string): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/getEleveDetails/${eleveId}`);
+  }
 
-  addEleve(username: string, password: string, email: string, numInscrit: number, userClasse: string): Observable<any> {
+  addEleve(username: string, password: string, email: string, numInscrit: string, userClass: string): Observable<any> {
    
       const url = `${this.baseUrl}/addEleve`; // Assuming you have a 'users' endpoint for signup
-      const signUpData = { username, password, email, numInscrit, userClasse }; // Include numInscrit and userClasse
+      const signUpData = { username, password, email, numInscrit, userClass }; // Include numInscrit and userClasse
       return this.http.post(url, signUpData).pipe(
         catchError(this.handleError)
       );
@@ -29,9 +32,12 @@ export class EleveService {
    
   
 
-  updateEleve(eleveId: string, eleveData: any): Observable<any> {
-    return this.http.put<any>(`${this.baseUrl}/updateEleve/${eleveId}`, eleveData);
-  }
+    updateEleve(eleveId: string, eleveData: any): Observable<any> {
+      console.log('Updating eleve with data:', eleveData); // Ajoutez cette ligne pour vérifier les données envoyées
+      return this.http.put<any>(`${this.baseUrl}/updateEleve/${eleveId}`, eleveData).pipe(
+        catchError(this.handleError)
+      );
+    }
 
   deleteEleve(eleveId: string): Observable<any> {
     return this.http.delete<any>(`${this.baseUrl}/deleteEleve/${eleveId}`);

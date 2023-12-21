@@ -44,32 +44,22 @@ export class ListEleveComponent implements OnInit {
   }
 
   updateEleve(eleveId: string) {
-    const updatedData = {
-      
-      
-    };
-
-    this.eleveService.updateEleve(eleveId, updatedData).subscribe(
-      (response) => {
-        console.log('Élève mis à jour avec succès:', response);
-        this.loadEleves(); // Refresh the list after updating
-      },
-      (error) => {
-        console.error('Erreur lors de la mise à jour de l\'élève :', error);
-      }
-    );
+    this.router.navigate(['/update-eleve', eleveId]);
   }
 
   deleteEleve(eleveId: string) {
-    this.eleveService.deleteEleve(eleveId).subscribe(
-      (response) => {
-        console.log('Élève supprimé avec succès:', response);
-        this.loadEleves(); // Refresh the list after deleting
-      },
-      (error) => {
-        console.error('Erreur lors de la suppression de l\'élève :', error);
-      }
-    );
+    if(confirm('Vouslez-vous supprimer cet élève ?'))
+ {
+  this.eleveService.deleteEleve(eleveId).subscribe(
+    (response) => {
+      console.log('Élève supprimé avec succès:', response);
+      this.loadEleves(); // Refresh the list after deleting
+    },
+    (error) => {
+      console.error('Erreur lors de la suppression de l\'élève :', error);
+    }
+  );
+ }
   }
 }
 
