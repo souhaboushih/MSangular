@@ -25,10 +25,14 @@
           <label for="" class="form__label">Numero d'inscrit</label>
         </div>
 
-        <div class="form__div">
-          <input type="text" class="form__input form-control" name="newUserClasse" [(ngModel)]="signUpData.userClass" required placeholder=" ">
-          <label for="" class="form__label">Votre classe</label>
-        </div>
+        <div class="form-floating">
+          <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="newUserClasse" [(ngModel)]="signUpData.userClass" required>
+            <option value="" disabled selected>choisir votre classe</option> 
+            <option *ngFor="let classe of classes" [value]="classe._id">{{ classe.className }}</option>
+          </select>
+          <label for="floatingSelect">Votre classe</label>
+       </div>
+      <br>
 
         <div class="form__div">
           <input type="password" class="form__input form-control" name="newPassword" [(ngModel)]="signUpData.password" required placeholder=" ">

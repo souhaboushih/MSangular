@@ -1,10 +1,10 @@
-// update-eleve.component.ts
-
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EleveService } from '../sevices/eleve.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SuccessMessageService } from '../sevices/success-message.service';
+import { ClassematiereService } from '../sevices/classematiere.service';
+
 
 @Component({
   selector: 'app-update-eleve',
@@ -14,13 +14,15 @@ import { SuccessMessageService } from '../sevices/success-message.service';
 export class UpdateEleveComponent implements OnInit {
   updateEleveForm: FormGroup;
   eleveId!: string;
+  classes: any[] = []; // Ajoutez cette ligne pour stocker la liste des classes
 
   constructor(
     private formBuilder: FormBuilder,
     private eleveService: EleveService,
     private route: ActivatedRoute,
     private router: Router,
-     private successMessageService: SuccessMessageService
+    private successMessageService: SuccessMessageService,
+    private ClassematiereService: ClassematiereService
   ) {
     this.updateEleveForm = this.formBuilder.group({
       newUsername: ['', Validators.required],
@@ -36,7 +38,7 @@ export class UpdateEleveComponent implements OnInit {
     // Récupérez l'ID de l'élève depuis l'URL
     this.route.paramMap.subscribe(params => {
       this.eleveId = params.get('id') || '';
-      
+
       // Utilisez l'ID de l'élève pour récupérer ses données
       this.eleveService.getEleveDetails(this.eleveId).subscribe(
         (eleveDetails) => {
@@ -49,6 +51,16 @@ export class UpdateEleveComponent implements OnInit {
             newPassword: eleveDetails.password,
             newEtat: eleveDetails.etat, // Vous pouvez pré-remplir ou non le mot de passe, en fonction de vos besoins
           });
+
+          // Récupérez la liste des classes et stockez-la dans la propriété 'classes'
+          this.ClassematiereService.getClasses().subscribe(
+            (classes) => {
+              this.classes = classes;
+            },
+            (error) => {
+              console.error('Erreur lors de la récupération des classes :', error);
+            }
+          );
         },
         (error) => {
           console.error('Erreur lors de la récupération des détails de l\'élève :', error);
@@ -61,9 +73,9 @@ export class UpdateEleveComponent implements OnInit {
     if (this.updateEleveForm.valid) {
       const updateData = this.updateEleveForm.value;
       console.log('Update data:', updateData);
-  
+
       // Convert newEtat to a number before sending it to the server
-  
+
       this.eleveService.updateEleve(this.eleveId, updateData).subscribe(
         (data) => {
           console.log('Élève mis à jour avec succès :', data);

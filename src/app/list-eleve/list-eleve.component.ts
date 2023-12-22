@@ -53,6 +53,7 @@ export class ListEleveComponent implements OnInit {
   this.eleveService.deleteEleve(eleveId).subscribe(
     (response) => {
       console.log('Élève supprimé avec succès:', response);
+      this.successMessageService.setSuccessMessage('Étudiant supprimer avec succès.');
       this.loadEleves(); // Refresh the list after deleting
     },
     (error) => {
