@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EleveService } from '../sevices/eleve.service';
 import { Router } from '@angular/router';
 import { SuccessMessageService } from '../sevices/success-message.service';
-import { ClassematiereService } from '../sevices/classematiere.service';
+import { ClasseService } from '../sevices/classe.service';
 
 @Component({
   selector: 'app-add-eleve',
@@ -17,7 +17,7 @@ export class AddEleveComponent implements OnInit {
     private eleveService: EleveService,
     private router: Router,
     private successMessageService: SuccessMessageService,
-    private ClassematiereService: ClassematiereService
+    private ClasseService: ClasseService
   ) {}
 
   ngOnInit() {
@@ -25,7 +25,7 @@ export class AddEleveComponent implements OnInit {
   }
 
   loadClasses() {
-    this.ClassematiereService.getClasses().subscribe(
+    this.ClasseService.getClasses().subscribe(
       (data) => {
         console.log('Classes récupérées avec succès:', data);
         this.classes = data;

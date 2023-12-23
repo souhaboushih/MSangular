@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EleveService } from '../sevices/eleve.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SuccessMessageService } from '../sevices/success-message.service';
-import { ClassematiereService } from '../sevices/classematiere.service';
+import { ClasseService } from '../sevices/classe.service';
 
 
 @Component({
@@ -22,7 +22,7 @@ export class UpdateEleveComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private successMessageService: SuccessMessageService,
-    private ClassematiereService: ClassematiereService
+    private ClasseService: ClasseService
   ) {
     this.updateEleveForm = this.formBuilder.group({
       newUsername: ['', Validators.required],
@@ -53,7 +53,7 @@ export class UpdateEleveComponent implements OnInit {
           });
 
           // Récupérez la liste des classes et stockez-la dans la propriété 'classes'
-          this.ClassematiereService.getClasses().subscribe(
+          this.ClasseService.getClasses().subscribe(
             (classes) => {
               this.classes = classes;
             },
