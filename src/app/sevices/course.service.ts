@@ -19,10 +19,10 @@ export class CourseService {
     const url = `${this.api}/coursByMatiere/${matiereId}`;
     return this.http.get<any[]>(url);
 }
-  getAllCourses(): Observable<any[]> {
-    const url = this.api;
-    return this.http.get<any[]>(url);
-  }
+  // getAllCourses(): Observable<any[]> {
+  //   const url = this.api;
+  //   return this.http.get<any[]>(url);
+  // }
 
   updateCourse(courseId: string, courseData: FormData): Observable<any> {
     const url = `${this.api}/updateCours/${courseId}`;
@@ -34,8 +34,8 @@ export class CourseService {
     return this.http.delete(url);
   }
 
-  deleteAllCourses(): Observable<any> {
-    const url = `${this.api}/deleteAll`;
-    return this.http.delete(url);
-  }
+  // deleteAllCourses(): Observable<any> {
+  //   const url = `${this.api}/deleteAll`;
+  //   return this.http.delete(url);
+  // }
 }
