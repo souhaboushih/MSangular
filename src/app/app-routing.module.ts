@@ -13,6 +13,7 @@ import { ClasseComponent } from './classe/classe/classe.component';
 import { ListEleveComponent } from './list-eleve/list-eleve.component';
 import { AddEleveComponent } from './add-eleve/add-eleve.component';
 import { UpdateEleveComponent } from './update-eleve/update-eleve.component';
+import { MatierCourComponent } from './matier-cour/matier-cour.component';
 const routes: Routes = [
   { path: '', redirectTo: '/users', pathMatch: 'full' },
   { path: 'users', component: UsersComponent },
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path: 'dashboard', component: HomeComponent },
   { path: 'eleve', component: EleveComponent },
   { path: 'add-course', component: AddCourseComponent },
-  { path: 'course-list', component: CourseListComponent },
+  { path: 'course-list/:matiereId', component: CourseListComponent },
+  { path: 'cours', component: MatierCourComponent },
   { path: 'matier', component: MatierComponent },
   { path: 'classe', component: ClasseComponent },
   { path: 'list-eleve', component: ListEleveComponent },

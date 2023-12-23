@@ -2,7 +2,6 @@
 <div class="container d-flex justify-content-center align-items-center min-vh-100">
   <div class="row border rounded-5 p-3 bg-white shadow box-area">
     <div class="col-md-6 d-flex justify-content-center align-items-center flex-column left-box color">
-      <!-- Existing content for the left box -->
       <div class="featured-image mb-3">
         <img src="assets/images/course.png" class="img-fluid logo-signup" alt="Course Logo">
       </div>
@@ -17,35 +16,45 @@
             <h2 class="form__title">Ajouter un Cours</h2>
 
             <div class="form__div">
-              <input type="text" class="form__input form-control" name="title" [(ngModel)]="courseData.nom" required placeholder=" ">
-              <label class="form__label" for="title">Titre du Cours</label>
+              <input type="text" class="form__input form-control" name="title" [(ngModel)]="courseData.nom" required placeholder="Titre du Cours" aria-label="Titre du Cours">
             </div>
 
             <div class="form__div">
-              <textarea class="form__input form-control" name="description" [(ngModel)]="courseData.description" required placeholder=" "></textarea>
-              <label class="form__label" for="description">Description</label>
+              <textarea class="form__input form-control" name="description" [(ngModel)]="courseData.description" required placeholder="Description" aria-label="Description"></textarea>
+            </div>
+            <div class="form__div">
+              <input type="date" class="form__input form-control" name="date" [(ngModel)]="courseData.datedebut" required aria-label="Date de début" placeholder="Date">
             </div>
 
             <div class="form__div">
-              <input type="text" class="form__input form-control" name="date" [(ngModel)]="courseData.datedebut" required placeholder=" ">
-              <label for="" class="form__label">Date</label>
-            </div>
-            <div class="form__div">
-              <label for="matiere">Matière</label>
-              <select class="form__input form-control" name="matiere" [(ngModel)]="courseData.matiereId" required>
+              <select class="form__input form-control" name="matiere" [(ngModel)]="courseData.matiereId" required aria-label="Matière">
                 <option value="" disabled>Sélectionnez une matière</option>
                 <option *ngFor="let matiere of matieres" [value]="matiere._id">{{ matiere.nom }}</option>
               </select>
             </div>
 
             <div class="form__div">
-              <input type="file" class="form__input form-control" name="file" (change)="onFileSelected($event)" accept=".pdf, .txt">
-              <label class="form__label" for="file">Fichier (PDF ou TXT)</label>
+              <input type="file" class="form__input form-control" name="file" (change)="onFileSelected($event)" accept=".pdf, .txt" aria-label="Fichier (PDF ou TXT)">
             </div>
 
-            <input type="submit" class="btn btn-lg w-100 fs-6 color mb-3" value="Ajouter le Cours">
+            <input type="submit" class="btn btn-lg w-100 fs-6 color mb-3" id="toastPlacement" value="Ajouter le Cours">
           </form>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Zone de toast pour les notifications -->
+<div aria-live="polite" aria-atomic="true" class="bg-dark position-relative bd-example-toasts">
+  <div class="toast-container p-3" id="toastPlacement">
+    <div class="toast">
+      <div class="toast-header">
+        <img src="..." class="rounded me-2" alt="...">
+        <strong class="me-auto">Bootstrap</strong>
+        <small>11 mins ago</small>
+      </div>
+      <div class="toast-body">
+        Hello, world! This is a toast message.
       </div>
     </div>
   </div>

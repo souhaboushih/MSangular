@@ -37,7 +37,7 @@ import { EleveService } from './sevices/eleve.service';
 import { AddEleveComponent } from './add-eleve/add-eleve.component';
 import { ListEleveComponent } from './list-eleve/list-eleve.component';
 import { UpdateEleveComponent } from './update-eleve/update-eleve.component';
-
+import { MatierCourComponent } from './matier-cour/matier-cour.component';
 
 
 
@@ -58,7 +58,8 @@ import { UpdateEleveComponent } from './update-eleve/update-eleve.component';
     ClasseComponent,
     AddEleveComponent,
     ListEleveComponent,
-    UpdateEleveComponent
+    UpdateEleveComponent,
+    MatierCourComponent
   ],
   imports: [BrowserModule, HttpClientModule, FormsModule, AppRoutingModule, MatButtonModule, MatDialogModule, MatTableModule, BrowserAnimationsModule, MatIconModule, ReactiveFormsModule, MatInputModule, MatCardModule,ToastrModule.forRoot({
     timeOut: 3000, // Durée d'affichage du toast en millisecondes

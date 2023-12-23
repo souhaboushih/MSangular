@@ -1,53 +1,71 @@
 <!-- add-course.component.html -->
 <div class="container d-flex justify-content-center align-items-center min-vh-100" style="background-image: url('assets/images/jeune.jpg'); background-size: cover; background-position: center;">
   <div class="row border rounded-5 p-3 bg-white shadow box-area">
-    <!-- ... (existing content) ... -->
-
-    <!-- Add the following course list section -->
-    <div class="course-list col-md-8 mt-4"> <!-- Adjusted col-md-8 for the course list -->
+    <div class="course-list col-md-8 mt-4">
       <h2>Liste des Cours</h2>
-
       <div *ngIf="courses.length === 0">
         <p>Aucun cours disponible.</p>
       </div>
-      <div *ngFor="let course of courses">
-        <div class="course-item mb-3">
-          <h4>Nom de cours: </h4>
-          <p>{{ course.nom }}</p>
-          <h4>Description : </h4>
-          <p>{{ course.description }}</p>
-          <h4>Date: </h4>
-          <p>{{ course.datedebut  }}</p>
-
-          <!-- Display the link or button for downloading the file -->
-          <ng-container *ngIf="course.fichier">
-            <a [href]="getDownloadLink(course)" download="course_file.pdf">
-              <button class="btn btn-lg w-8 fs-6 color mb-3">
-                <i class="bi bi-download"></i> Télécharger le fichier
-              </button>
-            </a>
-            <div>
-              <button class="btn btn-danger" (click)="deleteCourse(course.id)">
-                <i class="bi bi-trash"></i> Supprimer ce cours
-              </button>
-            </div>
-
-              <div class="course-item mb-3">
-                <!-- ... (existing content) ... -->
-
-                <!-- Display the link or button for updating the file -->
-                <button class="btn btn-warning" (click)="updateCourse(course.id)">
-                  <i class="bi bi-pencil"></i> Modifier ce cours
-                </button>
-              </div>
-
-          </ng-container>
-
-          <!-- Button to delete the specific course -->
-
-        </div>
+      <table class="table table-borderless">
+        <thead>
+          <tr>
+            <th>Titre</th>
+            <th>Téléchargement</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let course of courses">
+            <td>{{ course.nom }}</td>
+            <td class="telechargement">
+              <a [href]="getDownloadLink(course)" download="course_file.pdf">
+                <i class="fa fa-download" aria-hidden="true"></i>
+              </a>
+            </td>
+            <td><button class="btn btn-danger" (click)="deleteCourse(course.id)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
+              </svg>
+            </button>
+            <button class="btn btn-warning" (click)="updateCourse(course.id)" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+              </svg>
+            </button></td>
+          </tr>
+        </tbody>
+      </table>
+      <div>
+    </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Cours</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+      <div class="modal-body">
+        <form *ngIf="selectedCourseId" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="nom" class="form-label">Titre</label>
+            <input type="text" class="form-control" id="nom" [(ngModel)]="selectedCourse.nom" name="nom">
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <input type="text" class="form-control" id="description" [(ngModel)]="selectedCourse.description" name="description">
+          </div>
+          <!-- ... autres champs ... -->
 
+            <input type="date" class="form-control" name="date" required placeholder="Date" aria-label="Date de début" [(ngModel)]="selectedCourse.datedebut">
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button class="btn btn-warning" type="submit">Edit</button>
+            </div>
+        </form>
+    </div>
     </div>
   </div>
 </div>
