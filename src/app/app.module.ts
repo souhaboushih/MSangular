@@ -37,7 +37,6 @@ import { EleveService } from './sevices/eleve.service';
 import { AddEleveComponent } from './add-eleve/add-eleve.component';
 import { ListEleveComponent } from './list-eleve/list-eleve.component';
 import { UpdateEleveComponent } from './update-eleve/update-eleve.component';
-import { ClassematiereService } from './sevices/classematiere.service';
 import { MatierCourComponent } from './matier-cour/matier-cour.component';
 
 
@@ -67,7 +66,7 @@ import { MatierCourComponent } from './matier-cour/matier-cour.component';
     positionClass: 'toast-top-right', // Position du toast
     preventDuplicates: true, // Empêche l'affichage de toasts dupliqués
   })],
-  providers: [UserService, CourseService, EleveService, ClassematiereService], // Add CourseService to providers
+  providers: [UserService, CourseService, EleveService], // Add CourseService to providers
   bootstrap: [AppComponent, SideComponent],
 })
 export class AppModule {}
