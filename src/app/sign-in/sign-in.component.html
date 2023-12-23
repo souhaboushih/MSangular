@@ -14,45 +14,40 @@
          </div>
          <p class="text-white fs-2" style="font-family: 'Courier New', Courier, monospace; font-weight: 600;">Soyez Vérifié </p>
          <small class="text-white text-wrap text-center" style="width: 17rem;font-family: 'Courier New', Courier, monospace;">Rejoignez cette plateforme pour faciliter vos études.</small>
-     </div> 
+     </div>
 
   <!-------------------- ------ Boîte de Droite ---------------------------->
-      
-     <div class="col-md-6 right-box">
-        <div class="row align-items-center">
-              <div class="header-text mb-4">
-                   <h2>Bonjour, encore</h2>
-                   <p>Nous sommes heureux de vous avoir de retour.</p>
-                   <div *ngIf="errorMessage" class="alert alert-danger">
-                    {{ errorMessage }}
-                    </div>
-              </div>
-              <div class="l-form">
-                <form (ngSubmit)="signIn()" class="form">
-                    <h2 class="form__title">Se Connecter</h2>
-    
-                    <div class="form__div">
-                        <input type="text" class="form__input form-control" name="username" [(ngModel)]="signInData.username" required placeholder=" ">
-                        <label for="" class="form__label">Nom d'utilisateur</label>
-                    </div>
-    
-                    <div class="form__div">
-                        <input type="password" class="form__input form-control" name="password" [(ngModel)]="signInData.password" required placeholder=" ">
-                        <label for="" class="form__label">Mot de passe</label>
-                    </div>
-    
-                    <button type="submit" class=" btn btn-lg  w-100 fs-6 color mb-3">Connexion</button>
-                    <small class="signup">
-                      Vous n'avez pas de compte ? <a (click)="navigateToSignUp()" style="cursor: pointer;color: blueviolet;">Inscrivez-vous</a>
-                    </small>
-                    
-                </form>
-                
-                  
-              
+
+  <div class="col-md-6 right-box">
+    <div class="row align-items-center">
+        <div class="header-text mb-4">
+            <h2>Bonjour, encore</h2>
+            <p>Nous sommes heureux de vous avoir de retour.</p>
+            <div *ngIf="errorMessage" class="alert alert-danger">
+                {{ errorMessage }}
             </div>
         </div>
-     </div> 
+        <div class="l-form">
+            <form (ngSubmit)="signIn()" class="form">
+                <h2 class="form__title">Se Connecter</h2>
 
+                <div class="form__div">
+                    <input type="text" class="form__input form-control" id="username" name="username" [(ngModel)]="username" required placeholder=" ">
+                    <label for="username" class="form__label">Nom d'utilisateur</label>
+                </div>
+
+                <div class="form__div">
+                    <input type="password" class="form__input form-control" id="password" name="password" [(ngModel)]="password" required placeholder=" ">
+                    <label for="password" class="form__label">Mot de passe</label>
+                </div>
+
+                <button type="submit" class="btn btn-lg w-100 fs-6 color mb-3">Connexion</button>
+                <small class="signup">
+                    Vous n'avez pas de compte ? <a (click)="navigateToSignUp()" style="cursor: pointer; color: blueviolet;">Inscrivez-vous</a>
+                </small>
+            </form>
+        </div>
     </div>
-  </div>
+</div>
+</div>
+</div>

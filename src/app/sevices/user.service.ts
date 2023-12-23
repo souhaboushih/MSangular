@@ -33,7 +33,9 @@ export class UserService {
       })
       );
   }
-
+  login(username: string, password: string) {
+    return this.http.post(`${this.apiUrl}/signIn`, { username: username, password: password });
+  }
   signUp(username: string, password: string, email: string, numInscrit: number, userClasse: string): Observable<any> {
     const url = `${this.apiUrl}/signUp`; // Assuming you have a 'users' endpoint for signup
     const signUpData = { username, password, email, numInscrit, userClasse }; // Include numInscrit and userClasse
