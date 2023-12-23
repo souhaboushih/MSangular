@@ -3,7 +3,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
+import { catchError } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
@@ -26,7 +26,12 @@ export class CourseService {
 
   updateCourse(courseId: string, courseData: FormData): Observable<any> {
     const url = `${this.api}/updateCours/${courseId}`;
-    return this.http.put(url, courseData); // Use HTTP PUT for updates
+    return this.http.put<any>(url, courseData).pipe(
+      catchError(error => {
+        console.error('Erreur lors de la mise à jour du cours:', error);
+        throw error;
+      })
+    );
   }
 
   deleteCourse(courseId: string): Observable<any> {
