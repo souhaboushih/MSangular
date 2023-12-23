@@ -13,11 +13,11 @@ export class ClassematiereService {
 
   constructor(private http: HttpClient, private refreshService: RefreshService) { }
 
-  
+
   getClasses(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/classes`);
+    return this.http.get<any[]>(`${this.apiUrl}/classes/clas`);
   }
- 
+
   emitRefresh(): void {
     this.refreshService.emitRefresh();
   }
