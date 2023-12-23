@@ -27,7 +27,6 @@
             </div>
 
             <div class="form__div">
-              <label for="matiere">Matière</label>
               <select class="form__input form-control" name="matiere" [(ngModel)]="courseData.matiereId" required aria-label="Matière">
                 <option value="" disabled>Sélectionnez une matière</option>
                 <option *ngFor="let matiere of matieres" [value]="matiere._id">{{ matiere.nom }}</option>
