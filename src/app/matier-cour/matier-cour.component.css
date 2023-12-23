@@ -1,0 +1,20 @@
+li {
+  cursor: pointer; /* Change le curseur pour indiquer que l'élément est cliquable */
+  user-select: none; /* Empêche la sélection accidentelle du texte */
+  border-bottom: 1px solid #ccc; /* Ajoute une bordure en bas pour chaque élément de liste */
+  padding: 8px 0;
+  color: #007fff;
+  margin-top: 10%;
+  font-weight:initial;
+  font-size: large;
+}
+li:hover {
+  color: darkblue;
+}
+li:not(:last-child) {
+  margin-bottom: 8px; /* Ajoute de l'espace entre les éléments de liste, sauf le dernier */
+}
+ul {
+  list-style-type: none; /* Supprime les puces */
+  padding: 0; /* Supprime l'espacement intérieur par défaut de la liste */
+}
