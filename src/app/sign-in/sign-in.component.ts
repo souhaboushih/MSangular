@@ -26,28 +26,24 @@ export class SignInComponent {
     this.userService.signIn(username, password).subscribe(
       (data) => {
         console.log('Response from the service:', data);
-
-        // Check if the server response contains a token or any other relevant information
         if (data.token) {
-          // Store the user token in localStorage or a secure storage method
           localStorage.setItem('userToken', data.token);
 
-          if (data.etat === 1) {
-            if (data.role === 'eleve') {
-              this.router.navigate(['/eleve']); // Redirect to the eleve-page for eleve users
+          if (data.role === 'eleve') {
+            if (data.etat === 1) {
+              this.router.navigate(['/eleve']);
             } else {
-              this.router.navigate(['/dashboard']); // Redirect to the user's dashboard for other roles
-            }
-           
-        } else {
-            this.errorMessage = 'L\'utilisateur n\'a pas encore été accepté.';
-            // Optionally, you can clear the error message after a certain delay
-            setTimeout(() => {
+              this.errorMessage = 'L\'utilisateur n\'a pas encore été accepté.';
+              setTimeout(() => {
                 this.errorMessage = '';
-            }, 5000); // Clear the message after 5 seconds
-        }
+              }, 5000);
+            }
+          } else if (data.role === 'enseignant') {
+            this.router.navigate(['/cours']);
+          } else {
+            this.router.navigate(['/dashboard']);
+          }
         } else {
-          // Handle unexpected response format
           this.errorMessage = 'Unexpected response from the server.';
         }
       },
