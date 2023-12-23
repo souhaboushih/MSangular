@@ -1,8 +1,7 @@
-// course-list.component.ts
-
 import { Component, OnInit } from '@angular/core';
 import { CourseService } from '../sevices/course.service';
-
+import { MatiereService } from '../sevices/matier.service';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-course-list',
   templateUrl: './course-list.component.html',
@@ -10,12 +9,35 @@ import { CourseService } from '../sevices/course.service';
 })
 export class CourseListComponent implements OnInit {
   courses: any[] = [];
-  selectedCourseId: string | null = null;
-  constructor(private courseService: CourseService) {}
+  matieres: any[] = [];
+  selectedMatiereId: string = '';
+  selectedCourseId: string = '';
+  // course-list.component.ts
+selectedCourse: any = '';
+
+  constructor(private courseService: CourseService, private matiereService: MatiereService,private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.loadCourses();
+
+    const matiereId = this.route.snapshot.paramMap.get('matiereId');
+    console.log('matiereId en cours:', matiereId);
+    if (matiereId) {
+      this.getCoursForMatiere(matiereId);
+    }
   }
+
+getCoursForMatiere(matiereId: string): void {
+  this.courseService.getCoursByMatiere(matiereId).subscribe(
+    (cours: any[]) => {
+        console.log('Cours reçus:', cours);
+        this.courses = cours;
+    },
+    error => {
+        console.error('Erreur lors de la récupération des cours par matière:', error);
+    }
+);
+
+}
 
   getDownloadLink(course: any): string {
     return course.fichier;
@@ -49,11 +71,24 @@ export class CourseListComponent implements OnInit {
     );
   }
   updateCourse(courseId: string): void {
-    // Set the selected course id to show the update form
     this.selectedCourseId = courseId;
+    this.selectedCourse = this.courses.find(c => c.id === courseId); // Assurez-vous d'avoir une propriété unique comme 'id' pour chaque cours
+  }
+  onSubmit(): void {
+    if (this.selectedCourse) {
+      this.courseService.updateCourse(this.selectedCourseId, this.selectedCourse).subscribe(
+        () => {
+          console.log('Course updated successfully');
+          // Actualisez la liste des cours ou effectuez d'autres actions nécessaires
+        },
+        (error) => {
+          console.error('Error updating course:', error);
+        }
+      );
+    }
   }
 
-  private loadCourses(): void {
+   loadCourses(): void {
     this.courseService.getAllCourses().subscribe(
       (data) => {
         this.courses = data;
