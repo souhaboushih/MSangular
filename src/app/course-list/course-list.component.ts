@@ -44,12 +44,11 @@ getCoursForMatiere(matiereId: string): void {
   }
 
   deleteCourse(courseId: string): void {
-    // Call the service method to delete the specific course
+    console.log('ID du cours à supprimer:', courseId);
     this.courseService.deleteCourse(courseId).subscribe(
       () => {
+        this.courses = this.courses.filter(c => c.id !== courseId);
         console.log('Course deleted successfully');
-        // Reload the courses after deletion
-        this.loadCourses();
       },
       (error) => {
         console.error('Error deleting course:', error);
@@ -57,19 +56,19 @@ getCoursForMatiere(matiereId: string): void {
     );
   }
 
-  deleteAllCourses(): void {
-    // Call the service method to delete all courses
-    this.courseService.deleteAllCourses().subscribe(
-      () => {
-        console.log('All courses deleted successfully');
-        // Reload the courses after deletion
-        this.loadCourses();
-      },
-      (error) => {
-        console.error('Error deleting all courses:', error);
-      }
-    );
-  }
+  // deleteAllCourses(): void {
+  //   // Call the service method to delete all courses
+  //   this.courseService.deleteAllCourses().subscribe(
+  //     () => {
+  //       console.log('All courses deleted successfully');
+  //       // Reload the courses after deletion
+  //       this.loadCourses();
+  //     },
+  //     (error) => {
+  //       console.error('Error deleting all courses:', error);
+  //     }
+  //   );
+  // }
   updateCourse(courseId: string): void {
     this.selectedCourseId = courseId;
     this.selectedCourse = this.courses.find(c => c.id === courseId); // Assurez-vous d'avoir une propriété unique comme 'id' pour chaque cours
@@ -88,14 +87,14 @@ getCoursForMatiere(matiereId: string): void {
     }
   }
 
-   loadCourses(): void {
-    this.courseService.getAllCourses().subscribe(
-      (data) => {
-        this.courses = data;
-      },
-      (error) => {
-        console.error('Error loading courses:', error);
-      }
-    );
-  }
+  //  loadCourses(): void {
+  //   this.courseService.getAllCourses().subscribe(
+  //     (data) => {
+  //       this.courses = data;
+  //     },
+  //     (error) => {
+  //       console.error('Error loading courses:', error);
+  //     }
+  //   );
+  // }
 }
