@@ -27,5 +27,28 @@ export class NavbarEnseignantsComponent implements OnInit {
       }
     );
   }
+openLocation() {
+    // Vérifiez si le navigateur prend en charge la géolocalisation
+    if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            // Lorsque la position est obtenue avec succès, vous pouvez la traiter ici
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+
+            // Exemple : Afficher la position dans la console
+            console.log("Latitude:", latitude);
+            console.log("Longitude:", longitude);
+
+            // Vous pouvez également rediriger l'utilisateur vers une nouvelle page ou faire d'autres actions ici
+            window.location.href = `https://www.google.com/maps?q=${latitude},${longitude}`;
+        }, function(error) {
+            // Gérez les erreurs ici
+            console.error("Erreur lors de la récupération de la position:", error);
+            alert("Impossible d'obtenir votre position actuelle.");
+        });
+    } else {
+        alert("La géolocalisation n'est pas prise en charge par votre navigateur.");
+    }
+}
 
 }
