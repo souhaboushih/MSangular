@@ -36,7 +36,7 @@ const routes: Routes = [
   { path: 'list-prof', component: EnseignantListComponent },
   { path: 'add-prof', component: AddProfComponent },
   { path: 'update-prof/:id', component: UpdateProfComponent },
-  { path: 'home-enseignants', component:  HomeEnseignantsComponent },
+  { path: 'home-enseignants/:id', component:  HomeEnseignantsComponent },
 ];
 
 @NgModule({
