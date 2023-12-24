@@ -25,11 +25,11 @@
           <li class="nav-item dropdown" style="margin-right: 40px;">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="margin-right: 40px;">
                 <img src="assets/images/profile.png" alt="" class="profile">
-                {{ loggedInUsername || 'User Name' }}
+                {{ loggedInUsername$ | async }}
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">change password</a></li>
+              <li><a class="dropdown-item" href="#">parametre</a></li>
               <li><hr class="dropdown-divider"></li>
               <li> <a (click)="logout()" style="cursor: pointer"><i class='bx bx-log-out ' id="log_out"></i> Déconnexion</a></li>
             </ul>

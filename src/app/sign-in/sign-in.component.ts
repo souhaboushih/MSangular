@@ -28,6 +28,7 @@ export class SignInComponent {
       (response: any) => {
         if (response.userType === 'enseignant') {
           console.log('Response:', response);
+          console.log('Updated username:',response.username);
           const enseignantId = response.userId;
           this.router.navigate([`/home-enseignants/${enseignantId}`]);
 

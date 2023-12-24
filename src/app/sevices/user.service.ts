@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-
+import { map } from 'rxjs/operators';
 interface Users {
   username: string;
   email: string;
@@ -16,25 +16,31 @@ interface Users {
 export class UserService {
   private apiUrl = 'http://localhost:3002'; // Update this with your actual Spring Boot API URL
   private loggedInUsernameSubject: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
-
+  private loggedIn = new BehaviorSubject<boolean>(false);
+  private username = new BehaviorSubject<string | null>(null);
+  private userId = new BehaviorSubject<string | null>(null);
   get loggedInUsername$(): Observable<string | null> {
     return this.loggedInUsernameSubject.asObservable();
   }
-  constructor(private http: HttpClient) {}
-
-  signIn(username: string, password: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/signIn`, { username, password }).pipe(
-      catchError(this.handleError),
-      tap((data: any) => {
-        if (data.token) {
-          this.loggedInUsernameSubject.next(username);
-          localStorage.setItem('loggedInUsername', username);
-        }
-      })
-      );
+  constructor(private http: HttpClient) {
+  const storedUsername = localStorage.getItem('loggedInUsername');
+  if (storedUsername) {
+    this.loggedInUsernameSubject.next(storedUsername);
   }
+}
   login(username: string, password: string) {
-    return this.http.post(`${this.apiUrl}/signIn`, { username: username, password: password });
+    return this.http.post<any>(`${this.apiUrl}/signIn`, { username, password })
+      .pipe(
+        map(response => {
+          if (response) {
+             this.loggedIn.next(true);
+             this.username.next(response.username);
+            localStorage.setItem('loggedInUsername', response.username); // Mettre à jour le nom d'utilisateur
+             this.userId.next(response.userId); // Mettre à jour l'ID de l'utilisateur si nécessaire
+          }
+          return response;
+       })
+      );
   }
   signUp(username: string, password: string, email: string, numInscrit: number, userClasse: string): Observable<any> {
     const url = `${this.apiUrl}/signUp`; // Assuming you have a 'users' endpoint for signup
@@ -81,11 +87,13 @@ export class UserService {
   }
   getLoggedInUsername(): Observable<string | null> {
     const storedUsername = localStorage.getItem('loggedInUsername');
+    console.log('Stored Username:', storedUsername);
     if (storedUsername) {
       this.loggedInUsernameSubject.next(storedUsername);
     }
     return this.loggedInUsernameSubject.asObservable();
   }
+
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
