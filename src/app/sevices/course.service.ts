@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { HttpHeaders } from '@angular/common/http';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -33,12 +35,18 @@ export class CourseService {
       })
     );
   }
-
+  getCourseById(id: string): Observable<any> {
+    return this.http.get<any>(`${this.api}/cours/${id}`);
+  }
   deleteCourse(courseId: string): Observable<any> {
     const url = `${this.api}/delete/${courseId}`;
     return this.http.delete(url);
   }
-
+  downloadFile(id: string): Observable<Blob> {
+    return this.http.get(`${this.api}/download/${id}`, {
+      responseType: 'blob'
+    });
+  }
   // deleteAllCourses(): Observable<any> {
   //   const url = `${this.api}/deleteAll`;
   //   return this.http.delete(url);
