@@ -70,22 +70,40 @@ getCoursForMatiere(matiereId: string): void {
   //   );
   // }
   updateCourse(courseId: string): void {
-    this.selectedCourseId = courseId;
-    this.selectedCourse = this.courses.find(c => c.id === courseId); // Assurez-vous d'avoir une propriété unique comme 'id' pour chaque cours
+        this.selectedCourseId = courseId;
+    this.selectedCourse = this.courses.find(c => c.id === courseId);
   }
+
   onSubmit(): void {
-    if (this.selectedCourse) {
-      this.courseService.updateCourse(this.selectedCourseId, this.selectedCourse).subscribe(
-        () => {
-          console.log('Course updated successfully');
-          // Actualisez la liste des cours ou effectuez d'autres actions nécessaires
-        },
-        (error) => {
-          console.error('Error updating course:', error);
-        }
-      );
+    // Vérifiez si un cours est sélectionné
+    if (!this.selectedCourse) {
+      console.error('No course selected for update');
+      return;
     }
+
+
+    console.log('formdata', this.selectedCourse);
+
+    this.courseService.updateCourse(this.selectedCourseId, this.selectedCourse).subscribe(
+      () => {
+        console.log('Course updated successfully');
+      },
+      (error) => {
+        console.error('Error updating course:', error);
+      }
+    );
   }
+
+  //  loadCourses(): void {
+  //   this.courseService.getAllCourses().subscribe(
+  //     (data) => {
+  //       this.courses = data;
+  //     },
+  //     (error) => {
+  //       console.error('Error loading courses:', error);
+  //     }
+  //   );
+  // }
 
   //  loadCourses(): void {
   //   this.courseService.getAllCourses().subscribe(

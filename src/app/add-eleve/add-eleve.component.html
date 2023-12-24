@@ -30,6 +30,8 @@
             <option value="" disabled selected>choisir votre classe</option> 
             <option *ngFor="let classe of classes" [value]="classe._id">{{ classe.nom }} <i *ngIf="classe.niveau === 1; else elseBlock">{{ classe.niveau }}er anné</i>
             <ng-template #elseBlock>{{ classe.niveau }}ème anné</ng-template></option>
+            <option value="" disabled selected>choisir votre classe</option>
+            <option *ngFor="let classe of classes" [value]="classe._id">{{ classe.nom }} <i>{{classe.niveau}}éme annés</i></option>
           </select>
           <label for="floatingSelect">Votre classe</label>
        </div>
