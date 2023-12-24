@@ -27,7 +27,7 @@ export class SignInComponent {
     this.userService.login(this.username, this.password).subscribe(
       (response: any) => {
         if (response.userType === 'enseignant') {
-          this.router.navigate(['/cours']);
+          this.router.navigate(['/home-enseignants']);
         } else if (response.userType === 'eleve') {
           this.router.navigate(['/eleve']);
         } else if (response.userType === 'user') {
