@@ -50,8 +50,14 @@ download(courseId: string): void {
   this.courseService.downloadFile(courseId).subscribe(blob => {
     const link = document.createElement('a');
     link.href = window.URL.createObjectURL(blob);
-    link.download = `${courseId}.pdf`; // Nommez le fichier en utilisant l'ID du cours
-    link.click();
+    const course = this.courses.find(c => c.id === courseId);
+
+    if (course) {
+      link.download = `${course.nom}.pdf`; // Utilisation du nom du cours pour le téléchargement
+      link.click();
+    } else {
+      console.error('Course not found for download');
+    }
   });
 }
 
