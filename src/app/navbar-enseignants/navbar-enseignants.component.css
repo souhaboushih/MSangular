@@ -1,8 +1,8 @@
-.background-div {
-  background-image: url('../../assets/images/bgNavBar.png');
+/* .background-div {
+  /* background-image: url('../../assets/images/bgNavBar.png');
   background-size: cover;
   height: 500px;
-}
+} */
 
 .navbar {
   background-color: #0d6efd; /* Blue color in Bootstrap 5 */

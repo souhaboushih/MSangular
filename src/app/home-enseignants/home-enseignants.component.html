@@ -1,17 +1,4 @@
 <app-navbar-enseignants></app-navbar-enseignants>
 <div class="main">
-  <h1>List du Matiere</h1>
-   <div *ngIf="loading">Chargement en cours...</div>
-   <div *ngIf="error">{{ error }}</div>
-  <div *ngIf="!loading && !error">
-    <div *ngFor="let matiere of matieres">
-      <div class="form-card">
-        <div class="card border-light mb-3" style="max-width: 18rem;">
-          <div class="card-header">Header</div>
-          <div class="card-body">
-            <h5 class="card-title">{{ matiere.nom }}</h5>
-            <p class="card-text">{{ matiere.description }}</p>
-          </div>
-        </div>
-      </div>
+  <app-matier-cour></app-matier-cour>
     </div>
