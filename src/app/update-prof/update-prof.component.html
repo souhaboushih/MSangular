@@ -1,0 +1,47 @@
+<!-- update-eleve.component.html -->
+<div class="text">Mise à jour de l'Enseignant</div>
+<div class="container d-flex justify-content-center align-items-center min-vh-80">
+  <div class="row border rounded-5 p-3 bg-white shadow box-area formu">
+    <form [formGroup]="updateEnseignantForm" class="form">
+      <h2 class="form__title text-center">MISE À JOUR D'UN ENSEIGNANT</h2>
+
+      <div class="form__div">
+        <input type="text" class="form__input form-control" formControlName="newUsername" placeholder=" ">
+        <label for="" class="form__label">Nom d'utilisateur</label>
+      </div>
+
+      <div class="form__div">
+        <input type="email" class="form__input form-control" formControlName="email" placeholder=" ">
+        <label for="" class="form__label">Email</label>
+      </div>
+
+      <div class="form-floating">
+        <select class="form-select" id="floatingSelect" aria-label="Floating label select example" formControlName="newMatiere">
+            <option *ngFor="let matiere of matieres" [value]="matiere._id" [selected]="matiere._id === updateEnseignantForm.get('newMatiere')?.value">
+              {{ matiere.nom }}
+            </option>
+          </select>
+          
+        <label for="floatingSelect">Votre matiere</label>
+      </div>
+      <br>
+      
+      
+      <div class="form-floating">
+        <select class="form-select" id="floatingSelect" aria-label="Floating label select example" formControlName="newEtat">
+          <option value="1" [selected]="updateEnseignantForm.get('newEtat')?.value === '1'">Actif</option>
+          <option value="0" [selected]="updateEnseignantForm.get('newEtat')?.value === '0'">Inactif</option>
+        </select>
+        <label for="floatingSelect">État de l'élève</label>
+      </div>
+<br>
+      <div class="form__div">
+        <input type="password" class="form__input form-control" formControlName="newPassword" placeholder=" ">
+        <label for="" class="form__label">Mot de passe</label>
+      </div>
+
+      <button type="button" class="btn btn-lg w-100 fs-6 color mb-3" (click)="submitUpdate()">Mettre à jour</button>
+
+    </form>
+  </div>
+</div>

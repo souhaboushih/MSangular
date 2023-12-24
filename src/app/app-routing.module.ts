@@ -14,6 +14,10 @@ import { ListEleveComponent } from './list-eleve/list-eleve.component';
 import { AddEleveComponent } from './add-eleve/add-eleve.component';
 import { UpdateEleveComponent } from './update-eleve/update-eleve.component';
 import { MatierCourComponent } from './matier-cour/matier-cour.component';
+import { EnseignantListComponent } from './prof-list/prof-list.component';
+import { AddProfComponent } from './add-prof/add-prof.component';
+import { UpdateProfComponent } from './update-prof/update-prof.component';
+
 const routes: Routes = [
   { path: '', redirectTo: '/users', pathMatch: 'full' },
   { path: 'users', component: UsersComponent },
@@ -29,6 +33,11 @@ const routes: Routes = [
   { path: 'list-eleve', component: ListEleveComponent },
   { path: 'add-student', component: AddEleveComponent },
   { path: 'update-eleve/:id', component: UpdateEleveComponent },
+  { path: 'list-prof', component: EnseignantListComponent },
+  { path: 'add-prof', component: AddProfComponent },
+  { path: 'update-prof/:id', component: UpdateProfComponent },
+  
+  
 ];
 
 @NgModule({

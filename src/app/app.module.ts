@@ -38,6 +38,9 @@ import { AddEleveComponent } from './add-eleve/add-eleve.component';
 import { ListEleveComponent } from './list-eleve/list-eleve.component';
 import { UpdateEleveComponent } from './update-eleve/update-eleve.component';
 import { MatierCourComponent } from './matier-cour/matier-cour.component';
+import { EnseignantListComponent } from './prof-list/prof-list.component';
+import { AddProfComponent } from './add-prof/add-prof.component';
+import { UpdateProfComponent } from './update-prof/update-prof.component';
 
 
 
@@ -59,7 +62,10 @@ import { MatierCourComponent } from './matier-cour/matier-cour.component';
     AddEleveComponent,
     ListEleveComponent,
     UpdateEleveComponent,
-    MatierCourComponent
+    MatierCourComponent,
+    EnseignantListComponent,
+    AddProfComponent,
+    UpdateProfComponent
   ],
   imports: [BrowserModule, HttpClientModule, FormsModule, AppRoutingModule, MatButtonModule, MatDialogModule, MatTableModule, BrowserAnimationsModule, MatIconModule, ReactiveFormsModule, MatInputModule, MatCardModule,ToastrModule.forRoot({
     timeOut: 3000, // Durée d'affichage du toast en millisecondes
