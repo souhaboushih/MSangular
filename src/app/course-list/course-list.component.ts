@@ -18,14 +18,14 @@ selectedCourse: any = '';
   constructor(private courseService: CourseService, private matiereService: MatiereService,private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.courseService.getCourseById('658896bb2b172c7e6e0115b2').subscribe(
-      data => {
-        this.base64String = data.fichier.$binary.base64;
-      },
-      error => {
-        console.error('Erreur lors de la récupération du cours:', error);
-      }
-    );
+    // this.courseService.getCourseById('658896bb2b172c7e6e0115b2').subscribe(
+    //   data => {
+    //     this.base64String = data.fichier.$binary.base64;
+    //   },
+    //   error => {
+    //     console.error('Erreur lors de la récupération du cours:', error);
+    //   }
+    // );
     const matiereId = this.route.snapshot.paramMap.get('matiereId');
     console.log('matiereId en cours:', matiereId);
     if (matiereId) {
