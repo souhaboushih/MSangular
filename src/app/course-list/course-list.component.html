@@ -19,7 +19,7 @@
           <tr *ngFor="let course of courses">
             <td>{{ course.nom }}</td>
             <td class="telechargement">
-              <a [href]="getDownloadLink(course)" download="course_file.pdf">
+              <a (click)="download(course.id)">
                 <i class="fa fa-download" aria-hidden="true"></i>
               </a>
             </td>

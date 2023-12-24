@@ -14,11 +14,18 @@ export class CourseListComponent implements OnInit {
   selectedCourseId: string = '';
   // course-list.component.ts
 selectedCourse: any = '';
-
+   private base64String: string =""
   constructor(private courseService: CourseService, private matiereService: MatiereService,private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-
+    this.courseService.getCourseById('658896bb2b172c7e6e0115b2').subscribe(
+      data => {
+        this.base64String = data.fichier.$binary.base64;
+      },
+      error => {
+        console.error('Erreur lors de la récupération du cours:', error);
+      }
+    );
     const matiereId = this.route.snapshot.paramMap.get('matiereId');
     console.log('matiereId en cours:', matiereId);
     if (matiereId) {
@@ -39,9 +46,17 @@ getCoursForMatiere(matiereId: string): void {
 
 }
 
-  getDownloadLink(course: any): string {
-    return course.fichier;
-  }
+download(courseId: string): void {
+  this.courseService.downloadFile(courseId).subscribe(blob => {
+    const link = document.createElement('a');
+    link.href = window.URL.createObjectURL(blob);
+    link.download = `${courseId}.pdf`; // Nommez le fichier en utilisant l'ID du cours
+    link.click();
+  });
+}
+
+
+
 
   deleteCourse(courseId: string): void {
     console.log('ID du cours à supprimer:', courseId);
@@ -55,20 +70,6 @@ getCoursForMatiere(matiereId: string): void {
       }
     );
   }
-
-  // deleteAllCourses(): void {
-  //   // Call the service method to delete all courses
-  //   this.courseService.deleteAllCourses().subscribe(
-  //     () => {
-  //       console.log('All courses deleted successfully');
-  //       // Reload the courses after deletion
-  //       this.loadCourses();
-  //     },
-  //     (error) => {
-  //       console.error('Error deleting all courses:', error);
-  //     }
-  //   );
-  // }
   updateCourse(courseId: string): void {
         this.selectedCourseId = courseId;
     this.selectedCourse = this.courses.find(c => c.id === courseId);
@@ -93,26 +94,4 @@ getCoursForMatiere(matiereId: string): void {
       }
     );
   }
-
-  //  loadCourses(): void {
-  //   this.courseService.getAllCourses().subscribe(
-  //     (data) => {
-  //       this.courses = data;
-  //     },
-  //     (error) => {
-  //       console.error('Error loading courses:', error);
-  //     }
-  //   );
-  // }
-
-  //  loadCourses(): void {
-  //   this.courseService.getAllCourses().subscribe(
-  //     (data) => {
-  //       this.courses = data;
-  //     },
-  //     (error) => {
-  //       console.error('Error loading courses:', error);
-  //     }
-  //   );
-  // }
 }
