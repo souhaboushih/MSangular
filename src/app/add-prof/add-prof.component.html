@@ -1,5 +1,5 @@
 <!-- add-eleve-modal.component.html -->
-<div class="text">Ajouter un Élève</div>
+<div class="text">Ajouter un Enseignant</div>
 <div class="container d-flex justify-content-center align-items-center min-vh-100">
   <div class="row border rounded-5 p-3 bg-white shadow box-area formu">
     <div *ngIf="signupForm.submitted && signupForm.invalid" class="alert alert-danger">
@@ -7,8 +7,8 @@
     </div>
 
     <div class="l-form">
-      <form #signupForm="ngForm" (ngSubmit)="addEleve()" class="form">
-        <h2 class="form__title text-center">INSCRIPTION D'UN ÉLÈVE </h2>
+      <form #signupForm="ngForm" (ngSubmit)="addEnseignant()" class="form">
+        <h2 class="form__title text-center">INSCRIPTION D'UN ENSEIGNANT </h2>
 
         <div class="form__div">
           <input type="text" class="form__input form-control" name="newUsername" [(ngModel)]="signUpData.username" required placeholder=" ">
@@ -20,18 +20,14 @@
           <label for="" class="form__label">Email</label>
         </div>
 
-        <div class="form__div">
-          <input type="text" class="form__input form-control" name="newNumInscrit" [(ngModel)]="signUpData.numInscrit" required placeholder=" ">
-          <label for="" class="form__label">Numero d'inscrit</label>
-        </div>
+       
 
-        <div class="form-floating">
-          <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="newUserClasse" [(ngModel)]="signUpData.userClass" required>
-            <option value="" disabled selected>choisir votre classe</option> 
-            <option *ngFor="let classe of classes" [value]="classe._id">{{ classe.nom }} <i *ngIf="classe.niveau === 1; else elseBlock">{{ classe.niveau }}er anné</i>
-            <ng-template #elseBlock>{{ classe.niveau }}ème anné</ng-template></option>
+         <div class="form-floating">
+          <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="newUserMatiere" [(ngModel)]="signUpData.matiere" required>
+            <option value="" disabled selected>Choisir votre matiere</option> 
+            <option *ngFor="let matiere of matieres" [value]="matiere._id">{{ matiere.nom }} </option>
           </select>
-          <label for="floatingSelect">Votre classe</label>
+          <label for="floatingSelect">Votre matiere</label>
        </div>
       <br>
 
