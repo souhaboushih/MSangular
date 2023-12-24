@@ -27,7 +27,8 @@ export class NavbarEnseignantsComponent implements OnInit {
       }
     );
   }
-openLocation() {
+  openLocation() {
+    console.error("click:");
     // Vérifiez si le navigateur prend en charge la géolocalisation
     if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(function(position) {
@@ -35,12 +36,11 @@ openLocation() {
             const latitude = position.coords.latitude;
             const longitude = position.coords.longitude;
 
-            // Exemple : Afficher la position dans la console
-            console.log("Latitude:", latitude);
-            console.log("Longitude:", longitude);
+            // Construisez l'URL pour afficher la localisation du lycée dans Google Maps
+            const mapUrl = `https://www.google.com/maps/place/Institute+of+Technological+Studies+of+Bizerte/@37.2351619,9.8853473,19.03z/data=!4m7!3m6!1s0x12e31ff1faae6e19:0xa4da7162624c5788!4b1!8m2!3d37.2349582!4d9.8857319!16s%2Fg%2F1tn_wk9_?entry=ttu`;
 
-            // Vous pouvez également rediriger l'utilisateur vers une nouvelle page ou faire d'autres actions ici
-            window.location.href = `https://www.google.com/maps?q=${latitude},${longitude}`;
+            // Ouvrez la localisation du lycée dans une nouvelle fenêtre/onglet
+            window.open(mapUrl, '_blank');
         }, function(error) {
             // Gérez les erreurs ici
             console.error("Erreur lors de la récupération de la position:", error);
