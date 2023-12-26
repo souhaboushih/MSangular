@@ -9,43 +9,47 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./matier-cour.component.css']
 })
 export class MatierCourComponent implements OnInit {
+  matieresCommunes: any[] = [];
   courses: any[] = [];
   matieres: any[] = [];
   selectedMatiereId: string = '';
   selectedCourseId: string = '';
-  enseignantId: string | null = null;
   loading = true;
   error: string | null = null;
-  constructor(private matiereService: MatiereService,private router: Router,private route: ActivatedRoute) { }
+
+  constructor(
+    private matiereService: MatiereService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
     this.loadMatieres();
   }
+
   loadMatieres(): void {
-    this.enseignantId = this.route.snapshot.paramMap.get('id');
+    const enseignantId = this.route.snapshot.paramMap.get('enseignantId');
+    const classeId = this.route.snapshot.paramMap.get('classeId');
 
-    if (this.enseignantId) {
-      this.matiereService.getMatieresByEnseignantId(this.enseignantId)
-        .subscribe(
-          data => {
-            this.matieres = data;
-            this.loading = false;
-          },
-          error => {
-            this.error = 'Une erreur est survenue lors de la récupération des matières.';
-            this.loading = false;
-          }
-        );
-    } else {
-      this.error = 'ID de l\'enseignant non fourni dans l\'URL.';
-      this.loading = false;
+    if (!enseignantId || !classeId) {
+      console.error('IDs non fournis.');
+      return;
     }
-}
-redirectToCours(matiereId: string): void {
-  console.log("Matier ID:", matiereId);
 
+    this.matiereService.getMatieresCommunes(classeId, enseignantId).subscribe(
+      data => {
+        this.matieres = data;
+      },
+      error => {
+        console.error('Erreur lors de la récupération des matières communes:', error);
+        this.error = 'Erreur lors de la récupération des matières communes.';
+        this.loading = false;
+      }
+    );
+  }
 
-  // Naviguer vers la liste des cours de la matière sélectionnée
-  this.router.navigate(['/course-list', matiereId]);
-}
+  redirectToCours(matiereId: string): void {
+    console.log("Matier ID:", matiereId);
+    this.router.navigate(['/course-list', matiereId]);
+  }
 }

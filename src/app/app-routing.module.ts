@@ -27,7 +27,11 @@ const routes: Routes = [
   { path: 'eleve', component: EleveComponent },
   { path: 'add-course', component: AddCourseComponent },
   { path: 'course-list/:matiereId', component: CourseListComponent },
-  { path: 'cours', component: MatierCourComponent },
+  { path: 'cours/:id', component: MatierCourComponent },
+  {
+    path: 'matieres-communes/:classeId/:enseignantId',
+    component: MatierCourComponent
+  },
   { path: 'matier', component: MatierComponent },
   { path: 'classe', component: ClasseComponent },
   { path: 'list-eleve', component: ListEleveComponent },
@@ -44,4 +48,3 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
-

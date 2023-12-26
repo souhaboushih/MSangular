@@ -7,3 +7,12 @@
 .card{
   margin-left: 20px;
 }
+.main {
+    /* Assurez-vous que le chemin de l'image est correct */
+    background-image: url('../../assets/images/background-classe.jpg');
+    height: 100%;
+    /* Ajustez ces propriétés pour contrôler le comportement de l'image de fond */
+    background-size: cover; /* pour s'assurer que l'image couvre tout l'arrière-plan */
+    background-repeat: no-repeat; /* pour éviter la répétition de l'image */
+    background-attachment: fixed; /* pour que l'image reste fixe lors du défilement */
+}

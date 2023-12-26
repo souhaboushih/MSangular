@@ -22,7 +22,7 @@ export class AddProfComponent implements OnInit {
 
   ngOnInit() {
     this.loadMatiere();
-    
+
   }
   loadMatiere() {
     this.MatiereService.getMatieres().subscribe(
@@ -35,7 +35,6 @@ export class AddProfComponent implements OnInit {
       }
     );
   }
- 
 
   addEnseignant() {
     // Client-side validation

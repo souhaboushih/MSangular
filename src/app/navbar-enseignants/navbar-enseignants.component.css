@@ -5,18 +5,16 @@
 } */
 
 .navbar {
-  background-color: #0d6efd; /* Blue color in Bootstrap 5 */
+  background-color: #262627; /* Blue color in Bootstrap 5 */
   height: 100px;
   border: none;
-  box-shadow: 0 2px 4px rgb(0, 76, 254); /* Adjust the box-shadow as needed */
+  box-shadow: 0 2px 4px #212121;
 
 }
-
 .navbar-nav .nav-link {
   color: white !important; /* Set text color to white */
   font-size: 20px;
 }
-
 .logo {
   width: 70px;
   border-radius: 50%;

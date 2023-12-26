@@ -16,13 +16,21 @@ interface Users {
 export class UserService {
   private apiUrl = 'http://localhost:3002'; // Update this with your actual Spring Boot API URL
   private loggedInUsernameSubject: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
+  private loggedInUserIdSubject: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
   private loggedIn = new BehaviorSubject<boolean>(false);
   private username = new BehaviorSubject<string | null>(null);
-  private userId = new BehaviorSubject<string | null>(null);
+  public userId = new BehaviorSubject<string | null>(null);
   get loggedInUsername$(): Observable<string | null> {
     return this.loggedInUsernameSubject.asObservable();
   }
+  get loggedInUserId$(): Observable<string | null> {
+    return this.loggedInUserIdSubject.asObservable();
+  }
   constructor(private http: HttpClient) {
+    const storedUserId = localStorage.getItem('loggedInUserId');
+    if (storedUserId) {
+      this.loggedInUserIdSubject.next(storedUserId );
+    }
   const storedUsername = localStorage.getItem('loggedInUsername');
   if (storedUsername) {
     this.loggedInUsernameSubject.next(storedUsername);
@@ -36,7 +44,8 @@ export class UserService {
              this.loggedIn.next(true);
              this.username.next(response.username);
             localStorage.setItem('loggedInUsername', response.username); // Mettre à jour le nom d'utilisateur
-             this.userId.next(response.userId); // Mettre à jour l'ID de l'utilisateur si nécessaire
+             this.userId.next(response.userId);
+             localStorage.setItem('loggedInUserId', response.userId);
           }
           return response;
        })
@@ -94,6 +103,14 @@ export class UserService {
     return this.loggedInUsernameSubject.asObservable();
   }
 
+  getLoggedInUserId(): Observable<string | null> {
+    const storedUserId = localStorage.getItem('loggedInUserId');
+    console.log('Stored Username:', storedUserId);
+    if (storedUserId) {
+      this.loggedInUserIdSubject.next(storedUserId);
+    }
+    return this.loggedInUserIdSubject.asObservable();
+  }
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
