@@ -50,4 +50,7 @@ export class MatiereService {
   emitRefresh(): void {
     this.refreshService.emitRefresh();
   }
+  getMatieresCommunes(classeId: string, enseignantId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/matieres-communes/${classeId}/${enseignantId}`);
+  }
 }

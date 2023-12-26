@@ -18,7 +18,6 @@ export class SignInComponent {
 
 
   signIn() {
-    const { username, password } = this.signInData;
 
     if (!this.username || !this.password) {
       this.errorMessage = 'Username and password are required.';
@@ -31,7 +30,6 @@ export class SignInComponent {
           console.log('Updated username:',response.username);
           const enseignantId = response.userId;
           this.router.navigate([`/home-enseignants/${enseignantId}`]);
-
         } else if (response.userType === 'eleve') {
           this.router.navigate(['/eleve']);
         } else if (response.userType === 'user') {

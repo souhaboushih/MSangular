@@ -30,4 +30,10 @@ export class ClasseService {
   emitRefresh(): void {
     this.refreshService.emitRefresh();
   }
+  getprofclass(enseignantId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/enseignants/${enseignantId}`);
+  }
+  getMatiereByClasseId(classeId: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/matiere/${classeId}`);
+  }
 }

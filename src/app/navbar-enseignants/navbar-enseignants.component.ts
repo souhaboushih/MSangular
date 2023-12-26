@@ -8,13 +8,26 @@ import { Observable } from 'rxjs';
   styleUrls: ['./navbar-enseignants.component.css']
 })
 export class NavbarEnseignantsComponent implements OnInit {
-  loggedInUsername$: Observable<string | null>; // Observable pour le nom d'utilisateur
-
+  loggedInUsername$: Observable<string | null>;
+  loggedInUserId$: Observable<string | null>;
+  enseignantId: string= "";
   constructor(private userService: UserService, private router: Router) {
     this.loggedInUsername$ = this.userService.getLoggedInUsername();
+    this.loggedInUserId$ = this.userService.getLoggedInUserId();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
+  navigateToHome() {
+    this.userService.userId.subscribe(userId => {
+      if (userId) {
+        console.log('User ID:', userId);
+        this.router.navigate(['/home-enseignants',userId]);
+      }
+    });
+
+
+  }
 
   logout(): void {
     this.userService.logout().subscribe(

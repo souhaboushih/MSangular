@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 import { MatiereService } from '../sevices/matier.service';
 @Component({
   selector: 'app-home-enseignants',
@@ -13,11 +13,15 @@ export class HomeEnseignantsComponent implements OnInit {
   error: string | null = null;
 
   constructor(
+    private router: Router,
     private matiereService: MatiereService,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      const id = params['id'];
+    });
     this.enseignantId = this.route.snapshot.paramMap.get('id');
 
     if (this.enseignantId) {
