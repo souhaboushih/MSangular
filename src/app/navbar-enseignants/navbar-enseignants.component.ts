@@ -25,10 +25,15 @@ export class NavbarEnseignantsComponent implements OnInit {
         this.router.navigate(['/home-enseignants',userId]);
       }
     });
-
-
   }
-
+  navigateToCourse() {
+    this.userService.userId.subscribe(userId => {
+      if (userId) {
+        console.log('User ID:', userId);
+        this.router.navigate(['/add-course',userId]);
+      }
+    });
+  }
   logout(): void {
     this.userService.logout().subscribe(
       response => {

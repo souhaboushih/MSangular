@@ -26,9 +26,8 @@
             <div class="form__div">
               <input type="date" class="form__input form-control" name="date" [(ngModel)]="courseData.datedebut" required aria-label="Date de début" placeholder="Date">
             </div>
-
             <div class="form__div">
-              <select class="form__input form-control" name="matiere" [(ngModel)]="courseData.matiereId" required aria-label="Matière">
+              <select class="form__input form-control" name="matiere" [(ngModel)]="courseData.matiereId">
                 <option value="" disabled>Sélectionnez une matière</option>
                 <option *ngFor="let matiere of matieres" [value]="matiere._id">{{ matiere.nom }}</option>
               </select>

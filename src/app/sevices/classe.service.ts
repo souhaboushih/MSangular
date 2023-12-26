@@ -36,4 +36,5 @@ export class ClasseService {
   getMatiereByClasseId(classeId: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/matiere/${classeId}`);
   }
+
 }

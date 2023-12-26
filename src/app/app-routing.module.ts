@@ -25,7 +25,7 @@ const routes: Routes = [
   { path: 'sign-up', component: SignUpComponent },
   { path: 'dashboard', component: HomeComponent },
   { path: 'eleve', component: EleveComponent },
-  { path: 'add-course', component: AddCourseComponent },
+  { path: 'add-course/:id', component: AddCourseComponent },
   { path: 'course-list/:matiereId', component: CourseListComponent },
   { path: 'cours/:id', component: MatierCourComponent },
   {
