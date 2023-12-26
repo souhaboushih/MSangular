@@ -45,7 +45,6 @@ getCoursForMatiere(matiereId: string): void {
 );
 
 }
-
 download(courseId: string): void {
   this.courseService.downloadFile(courseId).subscribe(blob => {
     const link = document.createElement('a');

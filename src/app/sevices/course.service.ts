@@ -10,13 +10,18 @@ import { HttpHeaders } from '@angular/common/http';
   providedIn: 'root',
 })
 export class CourseService {
-  //private apiUrl = 'http://localhost:8888/SPRINT3/cours';
+  private apiUrl = 'http://localhost:8888/SPRINT3/cours';
   private  api = 'http://localhost:8081/cours';
+  //private apiBase='http://localhost:3000'
   constructor(private http: HttpClient) {}
   ajouterCours(idMatiere: string, coursData: FormData): Observable<any> {
     const url = `${this.api}/ajouterCours/${idMatiere}`;
     return this.http.post(url, coursData);
   }
+  // lierCours(classeId: string, coursId: string): Observable<any> {
+  //   const body = { classeId, coursId };
+  //   return this.http.post((`${this.apiBase}/lier-cours`), body);
+  // }
   getCoursByMatiere(matiereId: string): Observable<any[]> {
     const url = `${this.api}/coursByMatiere/${matiereId}`;
     return this.http.get<any[]>(url);

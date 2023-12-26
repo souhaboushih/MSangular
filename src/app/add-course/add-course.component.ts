@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CourseService } from '../sevices/course.service';
 import { MatiereService } from '../sevices/matier.service';
+import { ClasseService } from '../sevices/classe.service';
+import { UserService } from '../sevices/user.service';
 import { NotificationService } from '../sevices/notification.service';
+import { ActivatedRoute } from '@angular/router';
 interface CourseData {
   nom: string;
   description: string;
@@ -14,7 +17,9 @@ interface CourseData {
   styleUrls: ['./add-course.component.css'],
 })
 export class AddCourseComponent implements OnInit {
-
+  selectedClasses: string[] = [];
+  classes: any[] = [];
+  enseignantId: string | null = null;
   courseData: CourseData = {
     nom: '',
     description: '',
@@ -25,11 +30,33 @@ export class AddCourseComponent implements OnInit {
   selectedFile: File | null = null;
   matieres: any[] = [];
 
-  constructor(private courseService: CourseService, private matiereService: MatiereService,private notificationService: NotificationService) {}
+  constructor( private route: ActivatedRoute,private courseService: CourseService, private matiereService: MatiereService,private notificationService: NotificationService,private userService: UserService,private classeService: ClasseService) {}
 
   ngOnInit() {
+    const enseignantId = this.route.snapshot.paramMap.get('enseignantId');
+    this.enseignantId = this.userService.getCurrentEnseignantId();
+    if (this.enseignantId) {
+      this.loadClassesByEnseignantId(this.enseignantId);
+    } else {
+      console.error('ID de l\'enseignant non fourni dans les paramètres de l\'URL.');
+    }
+
     this.loadMatieres();
   }
+  // toggleSelection(event: any): void {
+  //   const classeId = event.target.value;
+  //   if (event.target.checked) {
+  //     // Ajouter la classe à la liste des classes sélectionnées
+  //     this.selectedClasses.push(classeId);
+  //   } else {
+  //     // Retirer la classe de la liste des classes sélectionnées
+  //     const index = this.selectedClasses.indexOf(classeId);
+  //     if (index > -1) {
+  //       this.selectedClasses.splice(index, 1);
+  //     }
+  //   }
+  //   console.log(this.selectedClasses); // Pour voir les classes sélectionnées dans la console
+  // }
 
   onFileSelected(event: any): void {
     const fileList: FileList = event.target.files;
@@ -74,17 +101,32 @@ export class AddCourseComponent implements OnInit {
     }
     throw new Error('Invalid date provided');
   }
+  loadClassesByEnseignantId(enseignantId: string): void {
+    this.classeService.getprofclass(enseignantId).subscribe(
+      (data: any[]) => {
+        this.classes = data;
+      },
+      error => {
+        console.error('Erreur lors de la récupération des classes:', error);
+      }
+    );
+  }
 
 
   loadMatieres() {
-    this.matiereService.getMatieres().subscribe(
-      (matieres: any[]) => {
-        this.matieres = matieres;
-      },
-      error => {
-        console.error('Erreur lors de la récupération des matières :', error);
-      }
-    );
+    console.log('id',this.enseignantId);
+    if (this.enseignantId) {
+      this.matiereService.getMatieresByEnseignantId(this.enseignantId).subscribe(
+        (matieres: any[]) => {
+          this.matieres = matieres;
+        },
+        error => {
+          console.error('Erreur lors de la récupération des matières pour l\'enseignant :', error);
+        }
+      );
+    } else {
+      console.error('ID de l\'enseignant non fourni.');
+    }
   }
 
   private isValidForm(): boolean {

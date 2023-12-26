@@ -131,6 +131,8 @@ export class UserService {
     }
     // Add more cases as needed
     return throwError('Une erreur est survenue. Veuillez réessayer plus tard.');
-
+  }
+  getCurrentEnseignantId(): string | null {
+    return this.userId.value;
   }
 }
