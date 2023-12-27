@@ -72,18 +72,17 @@ export class MatierComponent implements OnInit {
   }
   onClass(event: any, classeId: string): void {
     console.log('Checkbox changed for class:', classeId);
-  console.log('Current nouvelleMatiere.classes:', this.nouvelleMatiere.classes);
+
+    let targetArray = this.nouvelleMatiere.classes || this.matiereData.classes;
+
     if (event.target.checked) {
-      if (!this.nouvelleMatiere.classes) {
-        this.nouvelleMatiere.classes = [];
+      if (!targetArray.includes(classeId)) {
+        targetArray.push(classeId);
       }
-      this.nouvelleMatiere.classes.push(classeId);
     } else {
-      if (this.nouvelleMatiere.classes) {
-        const index = this.nouvelleMatiere.classes.indexOf(classeId);
-        if (index > -1) {
-          this.nouvelleMatiere.classes.splice(index, 1);
-        }
+      const index = targetArray.indexOf(classeId);
+      if (index > -1) {
+        targetArray.splice(index, 1);
       }
     }
   }
@@ -122,8 +121,9 @@ export class MatierComponent implements OnInit {
       );
 }
 isSelected(classId: string): boolean {
-  return this.nouvelleMatiere.classes.includes(classId);
+  return this.nouvelleMatiere.classes?.includes(classId) || false;
 }
+
 
   supprimerMatiere(id: string): void {
     this.matiereService.deleteMatiere(id).subscribe(
