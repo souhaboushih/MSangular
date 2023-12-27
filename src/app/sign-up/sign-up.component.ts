@@ -2,6 +2,7 @@
 import { Component } from '@angular/core';
 import { UserService } from '../sevices/user.service';
 import { Router } from '@angular/router';
+import { ClasseService } from '../sevices/classe.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -10,8 +11,23 @@ import { Router } from '@angular/router';
 })
 export class SignUpComponent {
   signUpData = {username: '', password: '', email: '', numInscrit: 0, userClasse: ''}; // Set numInscrit to 0 by default
+  classes: any[] = [];
+  constructor(private userService: UserService, private router:Router, private ClasseService:ClasseService) {
+  }
+  ngOnInit() {
+    this.loadClasses();
+  }
 
-  constructor(private userService: UserService, private router:Router) {
+  loadClasses() {
+    this.ClasseService.getClasses().subscribe(
+      (data) => {
+        console.log('Classes récupérées avec succès:', data);
+        this.classes = data;
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération des classes :', error);
+      }
+    );
   }
 
   signUp() {
@@ -35,7 +51,7 @@ export class SignUpComponent {
       },
       (error) => {
         console.error('Erreur lors de l\'inscription:', error);
-        // Handle signup error, e.g., display an error message
+        // Log the specific error message from the server
       }
     );
   }

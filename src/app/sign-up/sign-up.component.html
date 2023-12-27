@@ -2,69 +2,78 @@
 
  <div class="container d-flex justify-content-center align-items-center min-vh-100">
 
-  <!----------------------- Conteneur de Connexion -------------------------->
-
-     <div class="row border rounded-5 p-3 bg-white shadow box-area">
-
-  <!--------------------------- Boîte de Gauche ----------------------------->
-
-     <div class="col-md-6  d-flex justify-content-center align-items-center flex-column left-box color">
-         <div class="featured-image mb-3">
-          <img src="assets/images/logo.png"class="img-fluid logo-signup" >
-         </div>
-         <p class="text-white fs-2" style="font-family: 'Courier New', Courier, monospace; font-weight: 600;">Soyez Vérifié </p>
-         <small class="text-white text-wrap text-center" style="width: 17rem;font-family: 'Courier New', Courier, monospace;">Rejoignez cette plateforme pour faciliter vos études.</small>
-     </div> 
-
-  <!-------------------- ------ Boîte de Droite ---------------------------->
-      
-     <div class="col-md-6 right-box">
-        <div class="row align-items-center">
-          <div class="header-text mb-4">
-              <h2>Bonjour, encore</h2>
-              <p>Nous sommes heureux de vous avoir de retour.</p>
-              <div *ngIf="signupForm.submitted && signupForm.invalid" class="alert alert-danger">
-                Veuillez remplir tous les champs obligatoires.
-              </div>
+    <!----------------------- Conteneur de Connexion -------------------------->
+  
+       <div class="row border rounded-5 p-3 bg-white shadow box-area">
+  
+    <!--------------------------- Boîte de Gauche ----------------------------->
+  
+       <div class="col-md-6  d-flex justify-content-center align-items-center flex-column left-box color">
+           <div class="featured-image mb-3">
+            <img src="assets/images/logo.png"class="img-fluid logo-signup" >
+           </div>
+           <p class="text-white fs-2" style="font-family: 'Courier New', Courier, monospace; font-weight: 600;">Soyez Vérifié </p>
+           <small class="text-white text-wrap text-center" style="width: 17rem;font-family: 'Courier New', Courier, monospace;">Rejoignez cette plateforme pour faciliter vos études.</small>
+       </div> 
+  
+    <!-------------------- ------ Boîte de Droite ---------------------------->
+        
+       <div class="col-md-6 right-box">
+          <div class="row align-items-center">
+            <div class="header-text mb-4">
+                <h2>Bonjour, encore</h2>
+                <p>Nous sommes heureux de vous avoir de retour.</p>
+                <div *ngIf="signupForm.submitted && signupForm.invalid" class="alert alert-danger">
+                  Veuillez remplir tous les champs obligatoires.
+                </div>
+            </div>
+                <div class="l-form">
+                    <form (ngSubmit)="signUp()" #signupForm="ngForm" class="form">
+                        <h2 class="form__title">S'inscrire</h2>
+        
+                        <div class="form__div">
+                            <input type="text" class="form__input form-control" name="newUsername" [(ngModel)]="signUpData.username" required placeholder=" ">
+                            <label for="" class="form__label">Nom d'utilisateur</label>
+                        </div>
+        
+                        <div class="form__div">
+                            <input type="email" class="form__input form-control" name="email" [(ngModel)]="signUpData.email" required placeholder=" ">
+                            <label for="" class="form__label">Email</label>
+                        </div>
+  
+                        <div class="form__div">
+                            <input type="text" class="form__input form-control" name="newNumInscrit" [(ngModel)]="signUpData.numInscrit" required placeholder=" ">
+                            <label for="" class="form__label">Numero d'inscrit</label>
+                        </div>
+  
+                        <!-- <div class="form__div">
+                            <input type="text" class="form__input form-control" name="newUserClasse" [(ngModel)]="signUpData.userClasse" required placeholder=" ">
+                            <label for="" class="form__label">Votre classe</label>
+                        </div> -->
+  
+                        <div class="form-floating">
+                          <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="userClasse" [(ngModel)]="signUpData.userClasse" required>
+                            <option value="" disabled selected>choisir votre classe</option> 
+                            <option *ngFor="let classe of classes" [value]="classe._id">{{ classe.nom }} <i *ngIf="classe.niveau === 1; else elseBlock">{{ classe.niveau }}er anné</i>
+                            <ng-template #elseBlock>{{ classe.niveau }}ème anné</ng-template></option>
+                          </select>
+                          <label for="floatingSelect">Votre classe</label>
+                       </div><br>
+        
+                        <div class="form__div">
+                            <input type="password" class="form__input form-control" name="newPassword" [(ngModel)]="signUpData.password" required placeholder=" ">
+                            <label for="" class="form__label">Mot de passe</label>
+                        </div>
+        
+                        <input type="submit" class=" btn btn-lg   w-100 fs-6 color mb-3" value="S'inscrire">
+                        <small class="signin">
+                          Vous avez déjà un compte ? <a (click)="navigateToSignIn()" style="cursor: pointer; color: blueviolet;">Connectez-vous</a>
+                        </small>
+                    </form>
+                    
+                </div>
           </div>
-              <div class="l-form">
-                  <form (ngSubmit)="signUp()" #signupForm="ngForm" class="form">
-                      <h2 class="form__title">S'inscrire</h2>
-      
-                      <div class="form__div">
-                          <input type="text" class="form__input form-control" name="newUsername" [(ngModel)]="signUpData.username" required placeholder=" ">
-                          <label for="" class="form__label">Nom d'utilisateur</label>
-                      </div>
-      
-                      <div class="form__div">
-                          <input type="email" class="form__input form-control" name="email" [(ngModel)]="signUpData.email" required placeholder=" ">
-                          <label for="" class="form__label">Email</label>
-                      </div>
-
-                      <div class="form__div">
-                          <input type="text" class="form__input form-control" name="newNumInscrit" [(ngModel)]="signUpData.numInscrit" required placeholder=" ">
-                          <label for="" class="form__label">Numero d'inscrit</label>
-                      </div>
-
-                      <div class="form__div">
-                          <input type="text" class="form__input form-control" name="newUserClasse" [(ngModel)]="signUpData.userClasse" required placeholder=" ">
-                          <label for="" class="form__label">Votre classe</label>
-                      </div>
-      
-                      <div class="form__div">
-                          <input type="password" class="form__input form-control" name="newPassword" [(ngModel)]="signUpData.password" required placeholder=" ">
-                          <label for="" class="form__label">Mot de passe</label>
-                      </div>
-      
-                      <input type="submit" class=" btn btn-lg   w-100 fs-6 color mb-3" value="S'inscrire">
-                      <small class="signin">
-                        Vous avez déjà un compte ? <a (click)="navigateToSignIn()" style="cursor: pointer; color: blueviolet;">Connectez-vous</a>
-                      </small>
-                  </form>
-                  
-              </div>
-        </div>
-     </div> 
-
+       </div> 
+  
+      </div>
     </div>
-  </div>
