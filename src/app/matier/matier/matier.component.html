@@ -54,12 +54,8 @@
           <div class="mb-3">
             <label for="classes">Classes:</label>
             <div *ngFor="let classe of classes">
-                <input
-                    type="checkbox"
-                    [value]="classe._id"
-                    (change)="onClass($event, classe._id)"
-                    [checked]="nouvelleMatiere.classes.includes(classe._id)">
-                {{ classe.nom }}
+              <input type="checkbox" [value]="classe._id" (change)="onClass($event, classe._id)" [checked]="nouvelleMatiere.classes && nouvelleMatiere.classes.includes(classe._id)">
+              {{ classe.nom }}
             </div>
         </div>
           <div class="modal-footer">
