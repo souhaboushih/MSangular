@@ -1,0 +1,31 @@
+<!-- update-prof-class.component.html -->
+<div class="text">Mise à jour de l'association enseignant classe</div>
+<div class="container d-flex justify-content-center align-items-center min-vh-80">
+  <div class="row border rounded-5 p-3 bg-white shadow box-area formu">
+    <form [formGroup]="updateProfClassForm" class="form">
+      <h2 class="form__title text-center">MISE À JOUR enseignant classe</h2>
+
+      <div class="form-floating">
+        <select class="form-select" id="newIdProf" aria-label="Floating label select example" formControlName="newIdProf">
+          <option *ngFor="let enseignant of enseignants" [value]="enseignant._id" [selected]="enseignant._id === updateProfClassForm.get('newIdProf')?.value">{{ enseignant.username }}</option>
+        </select>
+        <label for="newIdProf">Votre Enseignant</label>
+      </div>
+
+      <div class="form-floating">
+        <select class="form-select" id="newIdclaase" aria-label="Floating label select example" formControlName="newIdclaase">
+          <option *ngFor="let classe of classes" [value]="classe._id" [selected]="classe._id === updateProfClassForm.get('newIdclaase')?.value">
+            {{ classe.nom }} 
+            <i *ngIf="classe.niveau === 1; else elseBlock">{{ classe.niveau }}er année</i>
+            <ng-template #elseBlock>{{ classe.niveau }}ème année</ng-template>
+          </option>
+        </select>
+        <label for="newIdclaase">Votre classe</label>
+      </div>
+
+      <br>
+
+      <button type="button" class="btn btn-lg w-100 fs-6 color mb-3" (click)="submitUpdate()">Mettre à jour</button>
+    </form>
+  </div>
+</div>

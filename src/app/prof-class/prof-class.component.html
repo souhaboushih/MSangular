@@ -1,0 +1,75 @@
+
+
+
+  <h2>Associations ProfClass</h2>
+ 
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ajoutModal">
+    <i class="bi bi-plus-circle-fill"></i>Add Classe
+  </button>
+  
+  <table class="table table-hover taille mt-4">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Enseignant</th>
+        <th scope="col">Classe</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let profClass of profClasses let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ getEnseignantNameById(profClass.idprof) }}</td>
+        <td>{{ getClasseNameById(profClass.idclass) }}</td>
+        <td>
+            <button class="btn btn-warning me-md-2" type="button" data-bs-toggle="modal" data-bs-target="#updateModal" (click)="updateProfClass(profClass._id)">
+                <i class="bi bi-pen-fill"></i>
+            </button>
+            <button class="btn btn-danger" type="button" (click)="removeProfClass(profClass._id)">
+                <i class="bi bi-trash-fill"></i>
+              </button>
+        </td>
+      </tr>
+      <tr *ngIf="profClasses.length === 0">
+        <td colspan="3">Aucun Enseignant Classe disponible</td>
+      </tr>
+    </tbody>
+  </table>
+  
+
+  
+  <!-- AjoutModal -->
+  <div class="modal fade" id="ajoutModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false" >
+    <div class="modal-dialog modal-dialog-centered" >
+      <div class="modal-content" >
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"> Associer un enseignant à un classe</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" >
+            <form (ngSubmit)="addProfClass()">
+                <label for="enseignantId">Enseignant: </label>
+                <select class="form-select" aria-label="Floating label select example" [(ngModel)]="enseignantId" name="enseignantId" required>
+                  <option *ngFor="let enseignant of enseignants" [value]="enseignant._id">{{ enseignant.username }}</option>
+                </select>
+            <br>
+                <label for="classeId">Classe: </label>
+                <select class="form-select" aria-label="Floating label select example" [(ngModel)]="classeId" name="classeId" required>
+                  <option *ngFor="let classe of classes" [value]="classe._id">{{ classe.nom }}
+                    <i *ngIf="classe.niveau === 1; else elseBlock">{{ classe.niveau }}er année</i>
+            <ng-template #elseBlock>{{ classe.niveau }}ème année</ng-template>
+                  </option>
+                </select>
+            <br>
+                <button class="btn btn-lg w-100 fs-6 color mb-3" type="submit">Ajouter</button>
+              </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  
+
+  
+  
