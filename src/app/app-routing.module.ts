@@ -21,6 +21,7 @@ import { HomeEnseignantsComponent } from './home-enseignants/home-enseignants.co
 import { CoursEleveComponent } from './cours-eleve/cours-eleve.component';
 import { ProfClassComponent } from './prof-class/prof-class.component';
 import { UpdateProfClassComponent } from './update-prof-class/update-prof-class.component';
+import { CoursListEleveComponent } from './cours-list-eleve/cours-list-eleve.component';
 const routes: Routes = [
   { path: '', redirectTo: '/users', pathMatch: 'full' },
   { path: 'users', component: UsersComponent },
@@ -47,6 +48,7 @@ const routes: Routes = [
   { path: 'cours-eleve', component:  CoursEleveComponent },
   { path: 'prof-classe', component:  ProfClassComponent },
   { path: 'update-prof-class/:id', component: UpdateProfClassComponent },
+  { path: 'course-list-eleve/:matiereId', component: CoursListEleveComponent },
 ];
 
 @NgModule({

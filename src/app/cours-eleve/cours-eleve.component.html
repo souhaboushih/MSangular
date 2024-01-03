@@ -1,29 +1,28 @@
 <app-navbar></app-navbar>
+<div class="justify-content-center align-items-center min-vh-100">
+  <div class="row border p-3 bg-white shadow box-area formu">
+    <div class="row">
+      <h3 class="h3 service-title">Liste des matieres</h3>
+      <div class="col-sm-6 mb-3" *ngFor="let matiere of matieres">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ matiere.nom }}</h5>
+            <p class="card-text">{{ matiere.description }}</p>
 
-<div class="   justify-content-center align-items-center min-vh-100">
-    <div class="row border p-3 bg-white shadow box-area formu ">
-<div class="row">
-    <h3 class="h3 service-title">What I'm doing</h3>
-    <div class="col-sm-6 mb-3"> <!-- Added mb-3 class for margin-bottom -->
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional
-                    content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+            <!-- Courses Section -->
+            <div *ngIf="coursByMatiere[matiere._id.$oid] && coursByMatiere[matiere._id.$oid].length > 0">
+              <h6 class="card-subtitle mb-2 text-muted">Cours:</h6>
+              <ul class="list-group">
+                <li class="list-group-item" *ngFor="let cours of coursByMatiere[matiere._id.$oid]">
+                  <a href="#" class="btn btn-link">{{ cours.titre }}</a>
+                </li>
+              </ul>
             </div>
+
+            <a  class="btn btn-primary" (click)="redirectToCours(matiere._id)">Cours</a>
+          </div>
         </div>
+      </div>
     </div>
-    <div class="col-sm-6">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional
-                    content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
+  </div>
 </div>

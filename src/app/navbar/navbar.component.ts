@@ -10,11 +10,15 @@ import { UserService } from "../sevices/user.service";
 })
 export class NavbarComponent implements OnInit {
   loggedInUsername: string | null = null;
+  loggedInUserId: string | null = null;
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
     this.userService.getLoggedInUsername().subscribe((username) => {
       this.loggedInUsername = username;
+    });
+    this.userService.getLoggedInUserId().subscribe((userId) => {
+      this.loggedInUserId = userId;
     });
   }
   logout(): void {
