@@ -1,0 +1,23 @@
+<app-navbar></app-navbar>
+
+
+  <div class="  p-3 bg-white shadow box-area formu ">
+    <div class="row">
+      <h3 class="h3 service-title">Liste des Cours</h3>
+      <div *ngIf="courses.length === 0">
+        <p>Aucun cours disponible.</p>
+      </div>
+
+      <ul class="list-group" >
+        <li class="list-group-item" *ngFor="let course of courses">
+          <div class="d-flex justify-content-between align-items-center">
+            <span>{{ course.nom }}  <a (click)="download(course.id)" class="text-danger">
+                <i class="bi bi-file-earmark-pdf-fill"></i>
+              </a></span>
+            
+             
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
