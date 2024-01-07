@@ -1,69 +1,88 @@
-
-table{
-  width: 90%;
-  margin: 0 auto;
-}
-.table th {
-  background-color: #3498db;
-  color: #fff;
-  padding: 10px; /* Réduisez la hauteur du padding */
+.taille{
+  width:60%;
+  margin-left: 20%;
+  margin-top: 2%;
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.2), 0 8px 22px 0 rgba(0, 0, 0, 0.19);
   text-align: center;
-  border: 1px solid #ddd;
+  padding: 10px;
+}
+.btn-Edit{
+  background-color: rgb(56, 9, 225);
+}
+.btn-Delete{
+  background-color: rgb(245, 76, 104);
+  margin-right: 20%;
+}
+.btn:hover {
+ box-shadow: 10px 10px 20px #888888;
+  /*color:aliceblue; */
+  background-color: #007bff; /* Couleur de fond au survol */
+  color: #fff;
+}
+.close{
+  background-color: rgb(245, 76, 104);
+}
+h3 {
+  text-align: center;
+}
+.btn-add{
+  background-color: rgb(56, 9, 225);
+  margin-left: 70%;
+  margin-top: 5%;
+}
+/* search */
+/* body {
+  margin: 0;
+  padding: 0;
+  background: #00a08d;
+} */
+.search-container {
+ float: right;
+ margin-right: 30%;
+ margin-top: 2%;
 }
 
-/* Style for table rows */
-.table tr {
-  transition: background-color 0.3s;
-}
-
-/* Alternate row background color */
-.table tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
-/* Style for table cells */
-.table td {
-  padding: 8px; /* Réduisez la hauteur du padding */
-  
-  border: 1px solid #ddd;
-}
-
-
-/* Style for buttons */
-.table button {
-  cursor: pointer;
-  padding: 6px 10px; /* Réduisez la hauteur du padding */
+.search-container input[type=text] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
   border: none;
-  margin-left: 10px;
-  border-radius: 5px;
-  font-size: 12px; /* Réduisez la taille de la police */
-  transition: background-color 2s;
 }
 
-
-/* Style for Accept button */
-.table .btn-success {
-  background-color: #28a745;
-  color: #fff;
+.search-container button {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
 }
 
-/* Style for Reject button */
-.table .btn-danger {
-  background-color: #dc3545;
-  color: #fff;
+.search-container button:hover {
+  background: #ccc;
 }
-
-/* Hover effect for buttons */
-.table button:hover {
-  background-color: #f5f5f5;
+.container{
+  margin-right: 1px;
 }
-
-/* Responsive design for the table */
-@media (max-width: 768px) {
-  .table {
-    font-size: 10px; /* Réduisez la taille de la police pour les écrans plus petits */
+.text-title{
+color: #11101d;
+font-size: 25px;
+font-weight: 500;
+margin: 18px;
+}
+@media screen and (max-width: 600px) {
+ .search-container {
+    float: none;
   }
-  .table button {
-    font-size: 10px;
+   .search-container button {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
   }
+
 }
