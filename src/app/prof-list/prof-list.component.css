@@ -63,6 +63,15 @@
   .search-container button:hover {
     background: #ccc;
   }
+  .container{
+    margin-right: 1px;
+  }
+  .text-title{
+  color: #11101d;
+  font-size: 25px;
+  font-weight: 500;
+  margin: 18px;
+  }
   @media screen and (max-width: 600px) {
    .search-container {
       float: none;
