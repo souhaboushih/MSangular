@@ -53,6 +53,8 @@ export class ClasseComponent implements OnInit {
       );
   }
   supprimerClasse(id: string): void {
+    if(confirm('Vouslez-vous supprimer cette classe?'))
+ {
     this.classeService.deleteClasse(id)
       .subscribe(() => {
         console.log('Classe supprimée avec succès');
@@ -61,6 +63,7 @@ export class ClasseComponent implements OnInit {
         console.error('Erreur lors de la suppression de la classe', error);
       });
   }
+}
 
 
   preparerEdition(event: any, classe: any): void {

@@ -1,6 +1,54 @@
 <!-- home.component.html -->
+<app-side></app-side>
+<div class="text-title text-center">Bienvenue sur la page d'accueil</div>
+<div class="container d-flex justify-content-center align-items-center min-vh-80">
+  <div class="row border rounded-5 p-3 bg-white shadow box-area formu">
 <div>
-    <h1>Bienvenue sur la page d'accueil</h1>
-    <!-- Ajoutez le contenu souhaité ici -->
+    
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">CLASSES</h5>
+            <p class="card-text">Total: {{ classesCount }}</p>
+            
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">MATIERES</h5>
+            <p class="card-text">Total: {{ matieresCount }}</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+  <div>
+    <br>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">ENSEIGNANT</h5>
+            <p class="card-text">Total: {{ enseignantsCount }}</p>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">ELEVES</h5>
+            <p class="card-text">Total: {{ elevesCount }}</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
   

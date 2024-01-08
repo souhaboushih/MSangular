@@ -57,6 +57,25 @@ export class SideComponent implements OnInit {
   toggleSidebar() {
     this.sidebarService.toggleSidebar();
   }
+  redirectToDashboard(): void {
+    this.router.navigate(['/dashboard']);
+  }
+  redirectToAcceptUsers(): void {
+    this.router.navigate(['/users']);
+  }
+  redirectToListEleve(): void {
+    this.router.navigate(['/list-eleve']);
+  }
+  redirectToListProf(): void {
+    this.router.navigate(['/list-prof']);
+  }
+  redirectToListClass(): void {
+    this.router.navigate(['/classe']);
+  }
+  redirectToListProfClass(): void {
+    this.router.navigate(['/prof-classe']);
+  }
+
   logout(): void {
     this.userService.logout().subscribe(
       response => {

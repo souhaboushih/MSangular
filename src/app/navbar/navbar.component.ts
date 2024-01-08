@@ -21,6 +21,12 @@ export class NavbarComponent implements OnInit {
       this.loggedInUserId = userId;
     });
   }
+  redirectToHomeEleve(): void {
+    this.router.navigate(['/eleve']);
+  }
+  redirectToCours(): void {
+    this.router.navigate(['/cours-eleve']);
+  }
   logout(): void {
     this.userService.logout().subscribe(
       response => {
