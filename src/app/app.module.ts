@@ -1,6 +1,6 @@
 // app.module.ts
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
@@ -49,6 +49,9 @@ import { ProfClassComponent } from './prof-class/prof-class.component';
 import { UpdateProfClassComponent } from './update-prof-class/update-prof-class.component';
 import { CoursListEleveComponent } from './cours-list-eleve/cours-list-eleve.component';
 import { AddTravailComponent } from './add-travail/add-travail.component';
+import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+import { initializeKeycloak } from './keycloak-init/keycloak-init.module';
+import { Router } from '@angular/router';
 
 
 
@@ -84,12 +87,23 @@ import { AddTravailComponent } from './add-travail/add-travail.component';
     CoursListEleveComponent,
     AddTravailComponent
   ],
-  imports: [BrowserModule, HttpClientModule, FormsModule, AppRoutingModule, MatButtonModule, MatDialogModule, MatTableModule, BrowserAnimationsModule, MatIconModule, ReactiveFormsModule, MatInputModule, MatCardModule,ToastrModule.forRoot({
+  imports: [BrowserModule, HttpClientModule, FormsModule,
+    AppRoutingModule,
+    KeycloakAngularModule ,
+    MatButtonModule, MatDialogModule, MatTableModule, BrowserAnimationsModule,
+     MatIconModule, ReactiveFormsModule, MatInputModule, MatCardModule,ToastrModule.forRoot({
     timeOut: 3000, // Durée d'affichage du toast en millisecondes
     positionClass: 'toast-top-right', // Position du toast
     preventDuplicates: true, // Empêche l'affichage de toasts dupliqués
   })],
-  providers: [UserService, CourseService, EleveService], // Add CourseService to providers
+  providers: [UserService, CourseService, EleveService,KeycloakService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeKeycloak,
+      deps: [KeycloakService, Router],
+      multi: true,
+    },
+  ], // Add CourseService to providers
   bootstrap: [AppComponent, SideComponent],
 })
 export class AppModule {}

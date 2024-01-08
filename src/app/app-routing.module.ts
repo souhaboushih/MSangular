@@ -24,7 +24,7 @@ import { UpdateProfClassComponent } from './update-prof-class/update-prof-class.
 import { CoursListEleveComponent } from './cours-list-eleve/cours-list-eleve.component';
 import { AddTravailComponent } from './add-travail/add-travail.component';
 const routes: Routes = [
-  { path: '', redirectTo: '/users', pathMatch: 'full' },
+
   { path: 'users', component: UsersComponent },
   { path: 'sign-in', component: SignInComponent },
   { path: 'sign-up', component: SignUpComponent },
