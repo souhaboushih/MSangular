@@ -48,6 +48,8 @@ import { CoursEleveComponent } from './cours-eleve/cours-eleve.component';
 import { ProfClassComponent } from './prof-class/prof-class.component';
 import { UpdateProfClassComponent } from './update-prof-class/update-prof-class.component';
 import { CoursListEleveComponent } from './cours-list-eleve/cours-list-eleve.component';
+import { AddTravailComponent } from './add-travail/add-travail.component';
+
 
 
 
@@ -79,7 +81,8 @@ import { CoursListEleveComponent } from './cours-list-eleve/cours-list-eleve.com
     CoursEleveComponent,
     ProfClassComponent,
     UpdateProfClassComponent,
-    CoursListEleveComponent
+    CoursListEleveComponent,
+    AddTravailComponent
   ],
   imports: [BrowserModule, HttpClientModule, FormsModule, AppRoutingModule, MatButtonModule, MatDialogModule, MatTableModule, BrowserAnimationsModule, MatIconModule, ReactiveFormsModule, MatInputModule, MatCardModule,ToastrModule.forRoot({
     timeOut: 3000, // Durée d'affichage du toast en millisecondes

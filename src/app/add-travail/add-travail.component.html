@@ -1,0 +1,40 @@
+<app-navbar></app-navbar>
+
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+  <div class="row border rounded-5 p-3 bg-white shadow box-area">
+    <div class="col-md-6 d-flex justify-content-center align-items-center flex-column left-box color">
+      <div class="featured-image mb-3">
+        <img src="assets/images/Blue_folder.png" class="img-fluid logo-signup" alt="Course Logo">
+      </div>
+    </div>
+    <div class="col-md-6 right-box">
+      <div class="row align-items-center">
+        <div class="header-text mb-4">
+          <!-- Existing header text or modify as needed -->
+        </div>
+        <div class="l-form">
+          <!-- Display the message here -->
+
+          <form (ngSubmit)="onSubmit()" class="form">
+            <h2 class="form__title">Ajouter un Travail</h2>
+
+            <div class="form__div">
+              <input type="text" class="form__input form-control" name="title" [(ngModel)]="title" required>
+              <label class="form__label" for="title">Titre du Travail</label>
+            </div>
+
+            <div class="form__div">
+              <input type="file" id="fichier" name="fichier" (change)="onFileSelected($event)" class="form__input form-control"  required>
+              <label class="form__label" for="file">Fichier (PDF ou TXT)</label>
+            </div>
+            <button class="btn btn-lg w-100 fs-6 color mb-3" type="submit">Ajouter le Travail</button>
+            
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  

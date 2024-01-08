@@ -1,6 +1,12 @@
 <app-navbar></app-navbar>
 <div class="justify-content-center align-items-center min-vh-100">
   <div class="row border p-3 bg-white shadow box-area formu">
+    <div *ngIf="successMessage" class="alert alert-success alert-dismissible fade show d-flex" role="alert">
+      <div>
+        {{ successMessage }}
+      </div>
+      <button type="button" class="btn-close" (click)="closeAlert()" aria-label="Close"></button>
+    </div>
     <div class="row">
       <h3 class="h3 service-title">Liste des matieres</h3>
       <div class="col-sm-6 mb-3" *ngFor="let matiere of matieres">

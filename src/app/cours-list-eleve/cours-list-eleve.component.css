@@ -4,8 +4,16 @@
     
 }
 ul{
-    width: 150px;
+    width: 550px;
+    
 }
+
 .formu{
     height: 800px;
+}
+a{
+    text-decoration: none;
+}
+a:hover{
+   cursor:pointer;
 }
