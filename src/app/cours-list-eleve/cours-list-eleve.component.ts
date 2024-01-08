@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CourseService } from '../sevices/course.service';
 import { MatiereService } from '../sevices/matier.service';
 import { ActivatedRoute } from '@angular/router';
+import { UserService } from "../sevices/user.service";
+import { Router } from '@angular/router';
+import { SuccessMessageService } from '../sevices/success-message.service';
 @Component({
   selector: 'app-cours-list-eleve',
   templateUrl: './cours-list-eleve.component.html',
@@ -12,10 +15,11 @@ export class CoursListEleveComponent implements OnInit {
   matieres: any[] = [];
   selectedMatiereId: string = '';
   selectedCourseId: string = '';
+  loggedInUserId: string | null = null;
   // course-list.component.ts
 selectedCourse: any = '';
    private base64String: string =""
-  constructor(private courseService: CourseService, private matiereService: MatiereService,private route: ActivatedRoute) {}
+  constructor(private courseService: CourseService, private matiereService: MatiereService,private route: ActivatedRoute, private userService: UserService, private router: Router, private successMessageService: SuccessMessageService) {}
 
   ngOnInit(): void {
     // this.courseService.getCourseById('658896bb2b172c7e6e0115b2').subscribe(
@@ -31,6 +35,10 @@ selectedCourse: any = '';
     if (matiereId) {
       this.getCoursForMatiere(matiereId);
     }
+
+    this.userService.getLoggedInUserId().subscribe((userId) => {
+      this.loggedInUserId = userId;
+    });
   }
 
 getCoursForMatiere(matiereId: string): void {
@@ -79,6 +87,15 @@ download(courseId: string): void {
         this.selectedCourseId = courseId;
     this.selectedCourse = this.courses.find(c => c.id === courseId);
   }
+  redirectToAddTravail(userId: string | null): void {
+    if (userId) {
+      this.router.navigate(['/add-travail', userId]);
+    } else {
+      console.error('User ID is null');
+      // Handle the null case as needed
+    }
+  }
+  
 
   onSubmit(): void {
     // Vérifiez si un cours est sélectionné

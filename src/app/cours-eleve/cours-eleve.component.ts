@@ -8,6 +8,7 @@ import { MatiereService } from '../sevices/matier.service';
 import { UserService } from '../sevices/user.service';
 import { CourseService } from '../sevices/course.service';
 import { Router } from '@angular/router';
+import { SuccessMessageService } from '../sevices/success-message.service';
 @Component({
   selector: 'app-cours-eleve',
   templateUrl: './cours-eleve.component.html',
@@ -15,9 +16,10 @@ import { Router } from '@angular/router';
 })
 export class CoursEleveComponent implements OnInit {
   matieres: any[] = [];
+  successMessage: string = '';
   coursByMatiere: any = {}; // Store courses by matiere
   
-  constructor(private eleveService: EleveService, private router: Router, private userService: UserService, private classeService: ClasseService, private matiereService: MatiereService, private courseService: CourseService) { }
+  constructor(private eleveService: EleveService, private router: Router, private userService: UserService, private classeService: ClasseService, private matiereService: MatiereService, private courseService: CourseService, private successMessageService: SuccessMessageService) { }
 
   ngOnInit(): void {
     this.userService.getLoggedInUserId().subscribe((userId) => {
@@ -39,8 +41,12 @@ export class CoursEleveComponent implements OnInit {
         });
       }
     });
+    this.successMessageService.successMessage$.subscribe((message) => {
+    });
   }
-
+  closeAlert() {
+    this.successMessage = '';
+  }
   redirectToCours(matiereId: string): void {
     console.log("Matier ID:", matiereId);
     this.router.navigate(['/course-list-eleve', matiereId]);

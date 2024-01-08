@@ -8,16 +8,28 @@
         <p>Aucun cours disponible.</p>
       </div>
 
-      <ul class="list-group" >
-        <li class="list-group-item" *ngFor="let course of courses">
+      <ul class="list-group" *ngFor="let course of courses">
+        <li class="list-group-item">
           <div class="d-flex justify-content-between align-items-center">
-            <span>{{ course.nom }}  <a (click)="download(course.id)" class="text-danger">
-                <i class="bi bi-file-earmark-pdf-fill"></i>
-              </a></span>
-            
-             
+            <span>
+              <a (click)="download(course.id)">
+                <i class="bi bi-file-earmark-pdf-fill text-danger"></i> {{ course.nom }}
+              </a>
+            </span>
+          </div>
+        </li>
+        <br>
+        <li class="list-group-item">
+          <div class="d-flex justify-content-between align-items-center">
+            <span>
+              <a (click)="redirectToAddTravail(loggedInUserId)">
+                <i class="bi bi-file-earmark-arrow-up-fill text-primary"></i> Travail Rendu
+              </a>
+            </span>
           </div>
         </li>
       </ul>
+      
     </div>
+    
   </div>
