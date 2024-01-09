@@ -75,6 +75,9 @@ export class SideComponent implements OnInit {
   redirectToListProfClass(): void {
     this.router.navigate(['/prof-classe']);
   }
+  redirectToListMatiere(): void {
+    this.router.navigate(['/matier']);
+  }
 
   logout(): void {
     this.userService.logout().subscribe(

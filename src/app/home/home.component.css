@@ -1,5 +1,5 @@
 .text-title{
-    color: #11101d;
+    color: #1836b2;
     font-size: 25px;
     font-weight: 500;
     margin: 18px;
@@ -7,6 +7,7 @@
     .container{
       width: 100%;
       margin-right: 1px;
+      text-align: center;
       
   }
   .form{
@@ -14,3 +15,13 @@
       
   }
   .l-form{width: 100%;}
+  .card-title{
+   color:  #1836b2;
+  }
+  .card-text{
+    color: #7bc3ad;
+  }
+  .card{
+    width: 50%;
+    margin: 0 auto;
+  }
