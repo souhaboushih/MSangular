@@ -126,6 +126,8 @@ isSelected(classId: string): boolean {
 
 
   supprimerMatiere(id: string): void {
+    if(confirm('Vouslez-vous supprimer cette matiere ?'))
+ {
     this.matiereService.deleteMatiere(id).subscribe(
       response => {
         this.getMatiereList();
@@ -136,6 +138,7 @@ isSelected(classId: string): boolean {
       }
     );
   }
+}
   afficherToast(message: string, titre: string): void {
     this.toastr.success(message, titre);
   }
